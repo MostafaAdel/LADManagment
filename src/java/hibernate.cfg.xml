@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ladmanagement?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <mapping resource="pojo/Department.hbm.xml"/>
+    <mapping resource="pojo/Instructor.hbm.xml"/>
+    <mapping resource="pojo/RequestDelivery.hbm.xml"/>
+    <mapping resource="pojo/Student.hbm.xml"/>
+    <mapping resource="pojo/DileveryQueue.hbm.xml"/>
+    <mapping resource="pojo/Lab.hbm.xml"/>
+    <mapping resource="pojo/Course.hbm.xml"/>
+    <mapping resource="pojo/Labgroup.hbm.xml"/>
+    <mapping resource="pojo/AssesmentQueue.hbm.xml"/>
+    <mapping resource="pojo/Account.hbm.xml"/>
+    <mapping resource="pojo/Assignment.hbm.xml"/>
+    <mapping resource="pojo/RequestAssesment.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
