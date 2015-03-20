@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 20, 2015 4:08:23 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 20, 2015 5:17:42 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojo.Instructor" table="instructor" catalog="labdb" optimistic-lock="version">
         <id name="instructorId" type="java.lang.Integer">
@@ -11,8 +11,8 @@
         <property name="fulName" type="string">
             <column name="FUL_NAME" length="200" />
         </property>
-        <property name="userName" type="int">
-            <column name="USER_NAME" not-null="true" />
+        <property name="userName" type="string">
+            <column name="USER_NAME" length="25" not-null="true" unique="true" />
         </property>
         <property name="password" type="string">
             <column name="PASSWORD" length="100" not-null="true" />

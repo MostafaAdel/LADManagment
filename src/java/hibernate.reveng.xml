@@ -2,18 +2,18 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="labdb"/>
-  <table-filter match-name="course"/>
+  <table-filter match-name="assign"/>
+  <table-filter match-name="teach"/>
+  <table-filter match-name="request_assesment"/>
+  <table-filter match-name="assesment_queue"/>
+  <table-filter match-name="request_delivery"/>
   <table-filter match-name="dilevery_queue"/>
   <table-filter match-name="lab"/>
-  <table-filter match-name="consist_of"/>
-  <table-filter match-name="assesment_queue"/>
-  <table-filter match-name="teach"/>
-  <table-filter match-name="assignment"/>
-  <table-filter match-name="request_assesment"/>
-  <table-filter match-name="assign"/>
-  <table-filter match-name="request_delivery"/>
-  <table-filter match-name="department"/>
   <table-filter match-name="instructor"/>
+  <table-filter match-name="consist_of"/>
+  <table-filter match-name="course"/>
+  <table-filter match-name="assignment"/>
+  <table-filter match-name="department"/>
   <table-filter match-name="student"/>
   <table-filter match-name="groups"/>
 </hibernate-reverse-engineering>

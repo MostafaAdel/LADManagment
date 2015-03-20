@@ -13,8 +13,8 @@
     <mapping resource="pojo/DileveryQueue.hbm.xml"/>
     <mapping resource="pojo/Course.hbm.xml"/>
     <mapping resource="pojo/Groups.hbm.xml"/>
-    <mapping resource="pojo/Department.hbm.xml"/>
     <mapping resource="pojo/AssesmentQueue.hbm.xml"/>
+    <mapping resource="pojo/Department.hbm.xml"/>
     <mapping resource="pojo/Instructor.hbm.xml"/>
     <mapping resource="pojo/Student.hbm.xml"/>
   </session-factory>
