@@ -5,12 +5,19 @@
  */
 package bussiness;
 
+import dao.Dao;
+import dao.StudentDao;
+import dao.StudentDaoImpl;
+import dto.Dto;
+import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import oracle.net.aso.r;
 
 /**
  *
@@ -31,7 +38,22 @@ public class SignIn extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
+            String name = request.getParameter("user");
+            String passwoed = request.getParameter("pass");
+            //create StudentDTO
+            StudentDTO studentDTO = new StudentDTO();
+            (studentDTO).setUserName(name);
+            (studentDTO).setPassword(passwoed);
+            //dao provider
+            Dao dao = new StudentDaoImpl();
+            studentDTO = ((StudentDaoImpl) dao).signInStudent(studentDTO);
+            if (studentDTO != null) {
+                System.out.println("your are exist");
+                response.sendRedirect("/LADManagment");
+
+            } else {
+                System.out.println("you are 3rs");
+            }
         }
     }
 

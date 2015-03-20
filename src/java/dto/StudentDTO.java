@@ -9,6 +9,33 @@ package dto;
  *
  * @author Al-Jazayeerly
  */
-public class StudentDTO implements Dto{
+public class StudentDTO implements Dto {
+
+    private String userName;
+    private String password;
+
+    public StudentDTO(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public StudentDTO(){}
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
+    
+
 }
