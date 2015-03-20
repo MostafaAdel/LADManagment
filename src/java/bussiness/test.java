@@ -5,8 +5,6 @@
  */
 package bussiness;
 
-import dto.AssignmentDto;
-
 /**
  *
  * @author Al-Jazayeerly
@@ -18,8 +16,6 @@ public class test {
      */
     public static void main(String[] args) {
         
-       //AssignmentDto assignmentDto = new AssignmentDto
-       
     }
     
 }
