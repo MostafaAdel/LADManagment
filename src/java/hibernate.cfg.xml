@@ -7,15 +7,15 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/labdb?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping resource="pojo/DileveryQueue.hbm.xml"/>
-    <mapping resource="pojo/Lab.hbm.xml"/>
-    <mapping resource="pojo/Groups.hbm.xml"/>
-    <mapping resource="pojo/Instructor.hbm.xml"/>
-    <mapping resource="pojo/Course.hbm.xml"/>
-    <mapping resource="pojo/RequestAssesment.hbm.xml"/>
-    <mapping resource="pojo/AssesmentQueue.hbm.xml"/>
-    <mapping resource="pojo/Department.hbm.xml"/>
     <mapping resource="pojo/Assignment.hbm.xml"/>
+    <mapping resource="pojo/RequestAssesment.hbm.xml"/>
+    <mapping resource="pojo/Lab.hbm.xml"/>
+    <mapping resource="pojo/DileveryQueue.hbm.xml"/>
+    <mapping resource="pojo/Course.hbm.xml"/>
+    <mapping resource="pojo/Groups.hbm.xml"/>
+    <mapping resource="pojo/Department.hbm.xml"/>
+    <mapping resource="pojo/AssesmentQueue.hbm.xml"/>
+    <mapping resource="pojo/Instructor.hbm.xml"/>
     <mapping resource="pojo/Student.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

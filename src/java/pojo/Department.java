@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 20, 2015 1:53:28 PM by Hibernate Tools 4.3.1
+// Generated Mar 20, 2015 4:08:21 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,28 +11,23 @@ import java.util.Set;
 public class Department  implements java.io.Serializable {
 
 
-     private int departmentId;
+     private Integer departmentId;
      private String name;
      private Set students = new HashSet(0);
 
     public Department() {
     }
 
-	
-    public Department(int departmentId) {
-        this.departmentId = departmentId;
-    }
-    public Department(int departmentId, String name, Set students) {
-       this.departmentId = departmentId;
+    public Department(String name, Set students) {
        this.name = name;
        this.students = students;
     }
    
-    public int getDepartmentId() {
+    public Integer getDepartmentId() {
         return this.departmentId;
     }
     
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
     public String getName() {

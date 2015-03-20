@@ -1,51 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 20, 2015 1:53:28 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 4:08:23 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="labdb" name="pojo.Student" optimistic-lock="version" table="student">
-    <id name="studentId" type="int">
-      <column name="STUDENT_ID"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="pojo.Department" fetch="select" name="department">
-      <column name="DEPARTMENT_ID" not-null="true"/>
-    </many-to-one>
-    <property name="fulName" type="string">
-      <column length="200" name="FUL_NAME"/>
-    </property>
-    <property name="userName" type="int">
-      <column name="USER_NAME" not-null="true"/>
-    </property>
-    <property name="password" type="string">
-      <column length="100" name="PASSWORD" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="groupses" table="assign">
-      <key>
-        <column name="STUDENT_ID" not-null="true"/>
-      </key>
-      <many-to-many entity-name="pojo.Groups">
-        <column name="GROUP_ID" not-null="true"/>
-      </many-to-many>
-    </set>
-    <set fetch="select" inverse="false" lazy="true" name="dileveryQueues" table="request_delivery">
-      <key>
-        <column name="STUDENT_ID" not-null="true"/>
-      </key>
-      <many-to-many entity-name="pojo.DileveryQueue">
-        <column name="QILEVERY_QUEUE_ID" not-null="true"/>
-      </many-to-many>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="requestAssesments" table="request_assesment">
-      <key>
-        <column name="STUDENT_ID" not-null="true"/>
-      </key>
-      <one-to-many class="pojo.RequestAssesment"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="assignments" table="assignment">
-      <key>
-        <column name="STUDENT_ID" not-null="true"/>
-      </key>
-      <one-to-many class="dto.Assignment"/>
-    </set>
-  </class>
+    <class name="pojo.Student" table="student" catalog="labdb" optimistic-lock="version">
+        <id name="studentId" type="java.lang.Integer">
+            <column name="STUDENT_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="department" class="pojo.Department" fetch="select">
+            <column name="DEPARTMENT_ID" not-null="true" />
+        </many-to-one>
+        <property name="fulName" type="string">
+            <column name="FUL_NAME" length="200" />
+        </property>
+        <property name="userName" type="int">
+            <column name="USER_NAME" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="100" not-null="true" />
+        </property>
+        <set name="groupses" table="assign" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STUDENT_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="pojo.Groups">
+                <column name="GROUP_ID" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="dileveryQueues" table="request_delivery" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="STUDENT_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="pojo.DileveryQueue">
+                <column name="QILEVERY_QUEUE_ID" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="requestAssesments" table="request_assesment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STUDENT_ID" not-null="true" />
+            </key>
+            <one-to-many class="pojo.RequestAssesment" />
+        </set>
+        <set name="assignments" table="assignment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="STUDENT_ID" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Assignment" />
+        </set>
+    </class>
 </hibernate-mapping>

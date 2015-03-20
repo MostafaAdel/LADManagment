@@ -1,52 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 20, 2015 1:53:28 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 4:08:23 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="labdb" name="pojo.Lab" optimistic-lock="version" table="lab">
-    <id name="labId" type="int">
-      <column name="LAB_ID"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="pojo.AssesmentQueue" fetch="select" name="assesmentQueue">
-      <column name="ASSESMENT_QUEUE_ID"/>
-    </many-to-one>
-    <many-to-one class="pojo.Course" fetch="select" name="course">
-      <column name="COURSE_ID" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="pojo.DileveryQueue" fetch="select" name="dileveryQueue">
-      <column name="QILEVERY_QUEUE_ID" not-null="true"/>
-    </many-to-one>
-    <property name="startDate" type="timestamp">
-      <column length="19" name="START_DATE"/>
-    </property>
-    <property name="endDate" type="timestamp">
-      <column length="19" name="END_DATE"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="dileveryQueues" table="dilevery_queue">
-      <key>
-        <column name="LAB_ID" not-null="true"/>
-      </key>
-      <one-to-many class="pojo.DileveryQueue"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="assesmentQueues" table="assesment_queue">
-      <key>
-        <column name="LAB_ID"/>
-      </key>
-      <one-to-many class="pojo.AssesmentQueue"/>
-    </set>
-    <set fetch="select" inverse="false" lazy="true" name="instructors" table="teach">
-      <key>
-        <column name="LAB_ID" not-null="true"/>
-      </key>
-      <many-to-many entity-name="pojo.Instructor">
-        <column name="INSTRUCTOR_ID" not-null="true"/>
-      </many-to-many>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="assignments" table="assignment">
-      <key>
-        <column name="LAB_ID" not-null="true"/>
-      </key>
-      <one-to-many class="dto.Assignment"/>
-    </set>
-  </class>
+    <class name="pojo.Lab" table="lab" catalog="labdb" optimistic-lock="version">
+        <id name="labId" type="java.lang.Integer">
+            <column name="LAB_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="assesmentQueue" class="pojo.AssesmentQueue" fetch="select">
+            <column name="ASSESMENT_QUEUE_ID" />
+        </many-to-one>
+        <many-to-one name="course" class="pojo.Course" fetch="select">
+            <column name="COURSE_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="dileveryQueue" class="pojo.DileveryQueue" fetch="select">
+            <column name="QILEVERY_QUEUE_ID" not-null="true" />
+        </many-to-one>
+        <property name="startDate" type="timestamp">
+            <column name="START_DATE" length="19" />
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="END_DATE" length="19" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="uploadEnabled" type="java.lang.Boolean">
+            <column name="upload_enabled" />
+        </property>
+        <set name="dileveryQueues" table="dilevery_queue" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LAB_ID" not-null="true" />
+            </key>
+            <one-to-many class="pojo.DileveryQueue" />
+        </set>
+        <set name="assesmentQueues" table="assesment_queue" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LAB_ID" />
+            </key>
+            <one-to-many class="pojo.AssesmentQueue" />
+        </set>
+        <set name="instructors" table="teach" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="LAB_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="pojo.Instructor">
+                <column name="INSTRUCTOR_ID" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="assignments" table="assignment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LAB_ID" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Assignment" />
+        </set>
+    </class>
 </hibernate-mapping>

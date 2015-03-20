@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 20, 2015 1:53:28 PM by Hibernate Tools 4.3.1
+// Generated Mar 20, 2015 4:08:21 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Student  implements java.io.Serializable {
 
 
-     private int studentId;
+     private Integer studentId;
      private Department department;
      private String fulName;
      private int userName;
@@ -25,14 +25,12 @@ public class Student  implements java.io.Serializable {
     }
 
 	
-    public Student(int studentId, Department department, int userName, String password) {
-        this.studentId = studentId;
+    public Student(Department department, int userName, String password) {
         this.department = department;
         this.userName = userName;
         this.password = password;
     }
-    public Student(int studentId, Department department, String fulName, int userName, String password, Set groupses, Set dileveryQueues, Set requestAssesments, Set assignments) {
-       this.studentId = studentId;
+    public Student(Department department, String fulName, int userName, String password, Set groupses, Set dileveryQueues, Set requestAssesments, Set assignments) {
        this.department = department;
        this.fulName = fulName;
        this.userName = userName;
@@ -43,11 +41,11 @@ public class Student  implements java.io.Serializable {
        this.assignments = assignments;
     }
    
-    public int getStudentId() {
+    public Integer getStudentId() {
         return this.studentId;
     }
     
-    public void setStudentId(int studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
     public Department getDepartment() {

@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 20, 2015 1:53:28 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2015 4:08:23 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="labdb" name="dto.Assignment" optimistic-lock="version" table="assignment">
-    <id name="assignmentId" type="int">
-      <column name="ASSIGNMENT_ID"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="pojo.Lab" fetch="select" name="lab">
-      <column name="LAB_ID" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="pojo.Student" fetch="select" name="student">
-      <column name="STUDENT_ID" not-null="true"/>
-    </many-to-one>
-    <property name="name" type="string">
-      <column length="100" name="NAME"/>
-    </property>
-    <property name="url" type="string">
-      <column length="1024" name="URL"/>
-    </property>
-  </class>
+    <class name="pojo.Assignment" table="assignment" catalog="labdb" optimistic-lock="version">
+        <id name="assignmentId" type="java.lang.Integer">
+            <column name="ASSIGNMENT_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="lab" class="pojo.Lab" fetch="select">
+            <column name="LAB_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="student" class="pojo.Student" fetch="select">
+            <column name="STUDENT_ID" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="100" />
+        </property>
+        <property name="url" type="string">
+            <column name="URL" length="1024" />
+        </property>
+    </class>
 </hibernate-mapping>
