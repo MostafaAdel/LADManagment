@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 17, 2015 7:23:33 PM by Hibernate Tools 4.3.1
+// Generated Mar 20, 2015 1:24:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,49 +11,44 @@ import java.util.Set;
 public class Student  implements java.io.Serializable {
 
 
-     private StudentId id;
+     private int studentId;
      private Department department;
      private String fulName;
      private int userName;
      private String password;
-     private boolean accountType;
-     private Set labgroups = new HashSet(0);
-     private Set requestDeliveries = new HashSet(0);
+     private Set groupses = new HashSet(0);
+     private Set dileveryQueues = new HashSet(0);
      private Set requestAssesments = new HashSet(0);
      private Set assignments = new HashSet(0);
-     private Set accounts = new HashSet(0);
 
     public Student() {
     }
 
 	
-    public Student(StudentId id, Department department, int userName, String password, boolean accountType) {
-        this.id = id;
+    public Student(int studentId, Department department, int userName, String password) {
+        this.studentId = studentId;
         this.department = department;
         this.userName = userName;
         this.password = password;
-        this.accountType = accountType;
     }
-    public Student(StudentId id, Department department, String fulName, int userName, String password, boolean accountType, Set labgroups, Set requestDeliveries, Set requestAssesments, Set assignments, Set accounts) {
-       this.id = id;
+    public Student(int studentId, Department department, String fulName, int userName, String password, Set groupses, Set dileveryQueues, Set requestAssesments, Set assignments) {
+       this.studentId = studentId;
        this.department = department;
        this.fulName = fulName;
        this.userName = userName;
        this.password = password;
-       this.accountType = accountType;
-       this.labgroups = labgroups;
-       this.requestDeliveries = requestDeliveries;
+       this.groupses = groupses;
+       this.dileveryQueues = dileveryQueues;
        this.requestAssesments = requestAssesments;
        this.assignments = assignments;
-       this.accounts = accounts;
     }
    
-    public StudentId getId() {
-        return this.id;
+    public int getStudentId() {
+        return this.studentId;
     }
     
-    public void setId(StudentId id) {
-        this.id = id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
     public Department getDepartment() {
         return this.department;
@@ -83,26 +78,19 @@ public class Student  implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public boolean isAccountType() {
-        return this.accountType;
+    public Set getGroupses() {
+        return this.groupses;
     }
     
-    public void setAccountType(boolean accountType) {
-        this.accountType = accountType;
+    public void setGroupses(Set groupses) {
+        this.groupses = groupses;
     }
-    public Set getLabgroups() {
-        return this.labgroups;
-    }
-    
-    public void setLabgroups(Set labgroups) {
-        this.labgroups = labgroups;
-    }
-    public Set getRequestDeliveries() {
-        return this.requestDeliveries;
+    public Set getDileveryQueues() {
+        return this.dileveryQueues;
     }
     
-    public void setRequestDeliveries(Set requestDeliveries) {
-        this.requestDeliveries = requestDeliveries;
+    public void setDileveryQueues(Set dileveryQueues) {
+        this.dileveryQueues = dileveryQueues;
     }
     public Set getRequestAssesments() {
         return this.requestAssesments;
@@ -117,13 +105,6 @@ public class Student  implements java.io.Serializable {
     
     public void setAssignments(Set assignments) {
         this.assignments = assignments;
-    }
-    public Set getAccounts() {
-        return this.accounts;
-    }
-    
-    public void setAccounts(Set accounts) {
-        this.accounts = accounts;
     }
 
 

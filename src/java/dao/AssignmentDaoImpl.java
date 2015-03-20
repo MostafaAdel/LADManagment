@@ -67,8 +67,8 @@ public class AssignmentDaoImpl implements AssignmentDao{
         Session session=createSession();
         AssignmentDto assignmentDto=(AssignmentDto)dto;
         session.beginTransaction();
-        Assignment assignment=new Assignment( assignmentDto.getLab(), assignmentDto.getStudent(), assignmentDto.getName(), assignmentDto.getUrl());
-        session.persist(assignment);
+     //   Assignment assignment=new Assignment( assignmentDto.getLab(), assignmentDto.getStudent(), assignmentDto.getName(), assignmentDto.getUrl());
+     //   session.persist(assignment);
         session.getTransaction().commit();
         closeSession(session);
     }

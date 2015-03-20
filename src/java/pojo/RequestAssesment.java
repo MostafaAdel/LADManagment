@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 17, 2015 7:23:33 PM by Hibernate Tools 4.3.1
+// Generated Mar 20, 2015 1:24:01 PM by Hibernate Tools 4.3.1
 
 
 
@@ -13,24 +13,21 @@ public class RequestAssesment  implements java.io.Serializable {
      private AssesmentQueue assesmentQueue;
      private Student student;
      private Integer numberOfRequests;
-     private String labName;
 
     public RequestAssesment() {
     }
 
 	
-    public RequestAssesment(RequestAssesmentId id, AssesmentQueue assesmentQueue, Student student, String labName) {
+    public RequestAssesment(RequestAssesmentId id, AssesmentQueue assesmentQueue, Student student) {
         this.id = id;
         this.assesmentQueue = assesmentQueue;
         this.student = student;
-        this.labName = labName;
     }
-    public RequestAssesment(RequestAssesmentId id, AssesmentQueue assesmentQueue, Student student, Integer numberOfRequests, String labName) {
+    public RequestAssesment(RequestAssesmentId id, AssesmentQueue assesmentQueue, Student student, Integer numberOfRequests) {
        this.id = id;
        this.assesmentQueue = assesmentQueue;
        this.student = student;
        this.numberOfRequests = numberOfRequests;
-       this.labName = labName;
     }
    
     public RequestAssesmentId getId() {
@@ -60,13 +57,6 @@ public class RequestAssesment  implements java.io.Serializable {
     
     public void setNumberOfRequests(Integer numberOfRequests) {
         this.numberOfRequests = numberOfRequests;
-    }
-    public String getLabName() {
-        return this.labName;
-    }
-    
-    public void setLabName(String labName) {
-        this.labName = labName;
     }
 
 

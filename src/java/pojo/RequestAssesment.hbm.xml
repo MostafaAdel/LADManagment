@@ -1,13 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 17, 2015 7:23:33 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 20, 2015 1:24:02 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojo.RequestAssesment" table="request_assesment" catalog="ladmanagement" optimistic-lock="version">
+    <class name="pojo.RequestAssesment" table="request_assesment" catalog="labdb" optimistic-lock="version">
         <composite-id name="id" class="pojo.RequestAssesmentId">
-            <key-property name="accountId" type="int">
-                <column name="ACCOUNT_ID" />
-            </key-property>
             <key-property name="studentId" type="int">
                 <column name="STUDENT_ID" />
             </key-property>
@@ -19,14 +16,10 @@
             <column name="ASSESMENT_QUEUE_ID" not-null="true" />
         </many-to-one>
         <many-to-one name="student" class="pojo.Student" update="false" insert="false" fetch="select">
-            <column name="ACCOUNT_ID" not-null="true" />
             <column name="STUDENT_ID" not-null="true" />
         </many-to-one>
         <property name="numberOfRequests" type="java.lang.Integer">
             <column name="NUMBER_OF_REQUESTS" />
-        </property>
-        <property name="labName" type="string">
-            <column name="LAB_NAME" length="100" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

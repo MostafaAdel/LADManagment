@@ -1,13 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 17, 2015 7:23:33 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 20, 2015 1:24:02 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pojo.AssesmentQueue" table="assesment_queue" catalog="ladmanagement" optimistic-lock="version">
+    <class name="pojo.AssesmentQueue" table="assesment_queue" catalog="labdb" optimistic-lock="version">
         <id name="assesmentQueueId" type="int">
             <column name="ASSESMENT_QUEUE_ID" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="lab" class="pojo.Lab" fetch="select">
+            <column name="LAB_ID" />
+        </many-to-one>
+        <set name="labs" table="lab" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ASSESMENT_QUEUE_ID" />
+            </key>
+            <one-to-many class="pojo.Lab" />
+        </set>
         <set name="requestAssesments" table="request_assesment" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="ASSESMENT_QUEUE_ID" not-null="true" />

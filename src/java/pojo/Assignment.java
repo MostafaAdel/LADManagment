@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 17, 2015 7:23:33 PM by Hibernate Tools 4.3.1
+// Generated Mar 20, 2015 1:24:01 PM by Hibernate Tools 4.3.1
 
 
 
@@ -19,13 +19,13 @@ public class Assignment  implements java.io.Serializable {
     }
 
 	
-    public Assignment( Lab lab, Student student) {
-        
+    public Assignment(int assignmentId, Lab lab, Student student) {
+        this.assignmentId = assignmentId;
         this.lab = lab;
         this.student = student;
     }
-    public Assignment( Lab lab, Student student, String name, String url) {
-      
+    public Assignment(int assignmentId, Lab lab, Student student, String name, String url) {
+       this.assignmentId = assignmentId;
        this.lab = lab;
        this.student = student;
        this.name = name;

@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 17, 2015 7:23:33 PM by Hibernate Tools 4.3.1
+// Generated Mar 20, 2015 1:24:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,9 +13,13 @@ public class Lab  implements java.io.Serializable {
 
 
      private int labId;
+     private AssesmentQueue assesmentQueue;
      private Course course;
+     private DileveryQueue dileveryQueue;
      private Date startDate;
      private Date endDate;
+     private Set dileveryQueues = new HashSet(0);
+     private Set assesmentQueues = new HashSet(0);
      private Set instructors = new HashSet(0);
      private Set assignments = new HashSet(0);
 
@@ -23,15 +27,20 @@ public class Lab  implements java.io.Serializable {
     }
 
 	
-    public Lab(int labId, Course course) {
+    public Lab(int labId, Course course, DileveryQueue dileveryQueue) {
         this.labId = labId;
         this.course = course;
+        this.dileveryQueue = dileveryQueue;
     }
-    public Lab(int labId, Course course, Date startDate, Date endDate, Set instructors, Set assignments) {
+    public Lab(int labId, AssesmentQueue assesmentQueue, Course course, DileveryQueue dileveryQueue, Date startDate, Date endDate, Set dileveryQueues, Set assesmentQueues, Set instructors, Set assignments) {
        this.labId = labId;
+       this.assesmentQueue = assesmentQueue;
        this.course = course;
+       this.dileveryQueue = dileveryQueue;
        this.startDate = startDate;
        this.endDate = endDate;
+       this.dileveryQueues = dileveryQueues;
+       this.assesmentQueues = assesmentQueues;
        this.instructors = instructors;
        this.assignments = assignments;
     }
@@ -43,12 +52,26 @@ public class Lab  implements java.io.Serializable {
     public void setLabId(int labId) {
         this.labId = labId;
     }
+    public AssesmentQueue getAssesmentQueue() {
+        return this.assesmentQueue;
+    }
+    
+    public void setAssesmentQueue(AssesmentQueue assesmentQueue) {
+        this.assesmentQueue = assesmentQueue;
+    }
     public Course getCourse() {
         return this.course;
     }
     
     public void setCourse(Course course) {
         this.course = course;
+    }
+    public DileveryQueue getDileveryQueue() {
+        return this.dileveryQueue;
+    }
+    
+    public void setDileveryQueue(DileveryQueue dileveryQueue) {
+        this.dileveryQueue = dileveryQueue;
     }
     public Date getStartDate() {
         return this.startDate;
@@ -63,6 +86,20 @@ public class Lab  implements java.io.Serializable {
     
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+    public Set getDileveryQueues() {
+        return this.dileveryQueues;
+    }
+    
+    public void setDileveryQueues(Set dileveryQueues) {
+        this.dileveryQueues = dileveryQueues;
+    }
+    public Set getAssesmentQueues() {
+        return this.assesmentQueues;
+    }
+    
+    public void setAssesmentQueues(Set assesmentQueues) {
+        this.assesmentQueues = assesmentQueues;
     }
     public Set getInstructors() {
         return this.instructors;
