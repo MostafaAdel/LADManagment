@@ -5,12 +5,11 @@
  */
 package dao;
 
-import dao.Dao;
 
 /**
  *
  * @author Al-Jazayeerly
  */
-public interface AssignmentDao extends Dao{
+public interface AssignmentDao{
     
 }

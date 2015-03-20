@@ -9,7 +9,7 @@ package dao;
  *
  * @author Al-Jazayeerly
  */
-public interface StudentDao extends Dao{
+public interface StudentDao{
     
     
 }

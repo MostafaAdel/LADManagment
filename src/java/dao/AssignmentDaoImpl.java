@@ -5,9 +5,6 @@
  */
 package dao;
 
-import dto.AssignmentDto;
-import dto.Dto;
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import utility.HibernateUtil;
@@ -29,44 +26,4 @@ public class AssignmentDaoImpl implements AssignmentDao{
     private void closeSession(Session session){
         session.close();
     }
-    
-    /**
-     * 
-     * @param dto
-     * @return 
-     */
-    @Override
-    
-    public List<Dto> get(Dto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    /**
-     * 
-     * @param dto 
-     */
-    @Override
-    public void update(Dto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    /**
-     * 
-     * @param dto 
-     */
-    @Override
-    public void delete(Dto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    /**
-     * 
-     * @param dto 
-     */
-    @Override
-    public void add(Dto dto) {
-        Session session=createSession();
-       // put your code here
-        closeSession(session);
-    }
-    
-    
 }

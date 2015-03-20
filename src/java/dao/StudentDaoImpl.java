@@ -5,11 +5,8 @@
  */
 package dao;
 
-import dto.Dto;
-import dto.StudentDTO;
+import dto.StudentDto;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,9 +32,8 @@ public class StudentDaoImpl implements StudentDao{
     }
 
     
-    public StudentDTO signInStudent(Dto dto) {
+    public StudentDto signInStudent(StudentDto studentDto) {
         Session session= createSession();
-        StudentDTO studentDto = (StudentDTO)dto;
         String name=studentDto.getUserName();
         String pass=studentDto.getPassword();
         Student student = new Student(null, studentDto.getUserName(), studentDto.getPassword());
@@ -50,31 +46,5 @@ public class StudentDaoImpl implements StudentDao{
         else 
             return null;
         
-//        String name=(StudentDTO)dto).
-        //Student student= new Student(null, ((StudentDTO)dto)., );
-        
-           }
-
-    @Override
-    public void update(Dto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(Dto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void add(Dto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-  
-
-    @Override
-    public List<Dto> get(Dto dto) {
-        return null;
-    }
-    
+    }    
 }
