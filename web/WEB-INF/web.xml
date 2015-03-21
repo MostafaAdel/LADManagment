@@ -4,9 +4,25 @@
         <servlet-name>SignIn</servlet-name>
         <servlet-class>boundary.SignIn</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddGroup</servlet-name>
+        <servlet-class>adminServlets.AddGroup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignIn</servlet-name>
         <url-pattern>/SignIn</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CreateGroupPrepration</servlet-name>
+        <servlet-class>adminServlets.CreateGroupPrepration</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateGroupPrepration</servlet-name>
+        <url-pattern>/CreateGroupPrepration</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddGroup</servlet-name>
+        <url-pattern>/AddGroup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

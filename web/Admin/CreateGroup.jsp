@@ -15,7 +15,7 @@ and open the template in the editor.
     </head>
     <body>
     <center><h1>Create Group</h1></center><br><br>
-    <form action="../CreateGroup" method="GET">
+    <form action="../LADManagment/AddGroup" method="GET">
         <table border="0">
             <tbody>
                 <tr>
@@ -25,7 +25,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>Course Name: </td>
-                    <td> <select id="courseID" name="courseIDs">
+                    <td> <select id="courseID" name="courseID">
                             <c:forEach var="course" items="${courses}">
                                 <option value="${course[0]}"> ${course[1]} </option>
                             </c:forEach>

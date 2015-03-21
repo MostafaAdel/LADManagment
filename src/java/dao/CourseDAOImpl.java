@@ -38,4 +38,5 @@ public class CourseDAOImpl {
         result = hql.list().iterator();
         return result;
     }
+   
 }

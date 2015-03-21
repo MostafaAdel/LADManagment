@@ -6,7 +6,10 @@
 package dao;
 
 import dto.StudentDto;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,5 +49,14 @@ public class StudentDaoImpl implements StudentDao{
         else 
             return null;
         
-    }    
+    }
+    public ArrayList<Student> getStudentByDepartmentID (int departmentID){
+        Session session = createSession();
+        ArrayList <Student> students = new ArrayList<>();
+        Query hql = session.createQuery("from Student s where s.department.departmentId = :departmentId ");
+        hql.setParameter("departmentId", departmentID);
+        students =  (ArrayList<Student>) hql.list();
+        return students;
+    }
 }
+
