@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 21, 2015 7:45:46 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,17 +12,21 @@ public class Course  implements java.io.Serializable {
 
 
      private Integer courseId;
+     private Groups groups;
      private String name;
      private Set labs = new HashSet(0);
-     private Set groupses = new HashSet(0);
 
     public Course() {
     }
 
-    public Course(String name, Set labs, Set groupses) {
+	
+    public Course(Groups groups) {
+        this.groups = groups;
+    }
+    public Course(Groups groups, String name, Set labs) {
+       this.groups = groups;
        this.name = name;
        this.labs = labs;
-       this.groupses = groupses;
     }
    
     public Integer getCourseId() {
@@ -31,6 +35,13 @@ public class Course  implements java.io.Serializable {
     
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
+    }
+    public Groups getGroups() {
+        return this.groups;
+    }
+    
+    public void setGroups(Groups groups) {
+        this.groups = groups;
     }
     public String getName() {
         return this.name;
@@ -45,13 +56,6 @@ public class Course  implements java.io.Serializable {
     
     public void setLabs(Set labs) {
         this.labs = labs;
-    }
-    public Set getGroupses() {
-        return this.groupses;
-    }
-    
-    public void setGroupses(Set groupses) {
-        this.groupses = groupses;
     }
 
 
