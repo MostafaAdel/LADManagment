@@ -7,6 +7,8 @@ package dao.utility;
 
 import dao.AssignmentDao;
 import dao.AssignmentDaoImpl;
+import dao.instructor.LabDao;
+import dao.instructor.LabDaoImpl;
 import dao.StudentDao;
 import dao.StudentDaoImpl;
 
@@ -27,11 +29,21 @@ public class DaoProvider {
     
     /**
      * use this method to return an instance 
-     * of the implementation of AssignmentDao
+     * of the implementation of StudentDao
      * 
-     * @return AssignmentDaoImplementation
+     * @return StudentDaoImplementation
      */
     public static StudentDao getStudentDaoImpl(){
         return (new StudentDaoImpl());
+    }
+    
+    /**
+     * use this method to return an instance 
+     * of the implementation of LabDto
+     * 
+     * @return LabDaoImplementation
+     */
+    public static LabDao getLabDaoImpl(){
+        return (new LabDaoImpl());
     }
 }

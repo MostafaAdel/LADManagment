@@ -5,9 +5,17 @@
         <servlet-class>boundary.SignIn</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LabsController</servlet-name>
+        <servlet-class>boundary.instructor.LabsController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddGroup</servlet-name>
         <servlet-class>adminServlets.AddGroup</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>LabsController</servlet-name>
+        <url-pattern>/LabsController</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignIn</servlet-name>
         <url-pattern>/SignIn</url-pattern>
