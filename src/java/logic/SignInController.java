@@ -5,8 +5,10 @@
  */
 package logic;
 
+import dao.InstructorDaoImpl;
 import dao.StudentDao;
 import dao.StudentDaoImpl;
+import dto.InstructorDto;
 import dto.StudentDto;
 
 /**
@@ -14,13 +16,17 @@ import dto.StudentDto;
  * @author Hossam
  */
 public class SignInController {
-    public boolean isUserExist(StudentDto studentDto){
-        StudentDao dao = new StudentDaoImpl();
-        studentDto = ((StudentDaoImpl) dao).signInStudent(studentDto);
-        if (studentDto != null) {
-            return true;
-        } else {
-            return false;
-        }
+
+    public StudentDto SigninStudent(String userName,String password){
+        StudentDto studentDto=new StudentDto(userName, password);
+        StudentDaoImpl studentDaoImpl=new StudentDaoImpl();
+        studentDto=studentDaoImpl.signInStudent(studentDto);
+        return studentDto;
+    }
+    public InstructorDto SigninInstructor(String userName,String password){
+        InstructorDto instructorDto=new InstructorDto(userName, password);
+        InstructorDaoImpl instructorDaoImpl=new InstructorDaoImpl();
+        instructorDto=instructorDaoImpl.signInStudent(instructorDto);
+        return instructorDto;
     }
 }
