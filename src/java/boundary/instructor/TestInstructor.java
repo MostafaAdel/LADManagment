@@ -41,7 +41,10 @@ public class TestInstructor extends HttpServlet {
         
         HttpSession session = request.getSession();
         //String username = (String)request.getAttribute("un");
+        session.setAttribute("instructorId", 1);
         session.setAttribute("labsOfCourse", labsOfCourse);
+        if(labsOfCourse.size()>0)
+            response.sendRedirect("/LADManagment/LabsController?lab=1");
     }
 
     /**
