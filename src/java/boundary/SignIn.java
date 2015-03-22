@@ -7,12 +7,14 @@ package boundary;
 
 import dao.StudentDao;
 import dao.StudentDaoImpl;
+import dto.InstructorDto;
 import dto.StudentDto;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import logic.SignInController;
 
 /**
@@ -20,10 +22,9 @@ import logic.SignInController;
  * @author Al-Jazayeerly
  */
 public class SignIn extends HttpServlet {
-    
-    SignInController signInController =new SignInController();
-    
-    
+
+    SignInController signInController = new SignInController();
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -48,17 +49,33 @@ public class SignIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
         //get parameters
+
         String name = request.getParameter("user");
-        String passwoed = request.getParameter("pass");
-        //create StudentDto
-        StudentDto studentDTO = new StudentDto(name, passwoed);
-        //dao provider
-        if(signInController.isUserExist(studentDTO))
-            response.sendRedirect("/LADManagment");
-        
+        String namePrefix = name.substring(0, 4);
+        String namePostfix = name.substring(4);
+        String password = request.getParameter("pass");
+        if (namePrefix.equals("std_")) {
+            StudentDto studentDto = signInController.SigninStudent(namePostfix, password);
+            if (studentDto != null) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("studentDto", studentDto);
+                response.sendRedirect("/LADManagment/welcomeStudent.html");
+            }
+        } else if (namePrefix.equals("ins_")) {
+            InstructorDto instructorDto = signInController.SigninInstructor(namePostfix, password);
+            if (instructorDto != null) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("instructorDto", instructorDto);
+                response.sendRedirect("/LADManagment/welcomeIns.html");
+            }
+
+        } else {
+
+        }
+
     }
 
     /**
