@@ -8,7 +8,10 @@
         <servlet-name>LabsController</servlet-name>
         <servlet-class>boundary.instructor.LabsController</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>AddGroup</servlet-name>
+        <servlet-class>adminServlets.AddGroup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LabsController</servlet-name>
         <url-pattern>/LabsController</url-pattern>
