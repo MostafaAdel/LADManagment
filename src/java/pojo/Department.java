@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 5:32:31 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,13 +13,20 @@ public class Department  implements java.io.Serializable {
 
      private Integer departmentId;
      private String name;
+     private boolean activated;
      private Set students = new HashSet(0);
 
     public Department() {
     }
 
-    public Department(String name, Set students) {
+	
+    public Department(String name, boolean activated) {
+        this.name = name;
+        this.activated = activated;
+    }
+    public Department(String name, boolean activated, Set students) {
        this.name = name;
+       this.activated = activated;
        this.students = students;
     }
    
@@ -36,6 +43,13 @@ public class Department  implements java.io.Serializable {
     
     public void setName(String name) {
         this.name = name;
+    }
+    public boolean isActivated() {
+        return this.activated;
+    }
+    
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
     public Set getStudents() {
         return this.students;

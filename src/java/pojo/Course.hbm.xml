@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 22, 2015 6:56:52 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 22, 2015 5:32:32 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojo.Course" table="course" catalog="labdb" optimistic-lock="version">
         <id name="courseId" type="java.lang.Integer">
             <column name="COURSE_ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="groups" class="pojo.Groups" fetch="select">
-            <column name="groups_GROUP_ID" not-null="true" />
-        </many-to-one>
         <property name="name" type="string">
-            <column name="NAME" length="100" />
+            <column name="NAME" length="100" not-null="true" unique="true" />
         </property>
-        <set name="labs" table="lab" inverse="true" lazy="true" fetch="select">
+        <property name="activated" type="boolean">
+            <column name="activated" not-null="true" />
+        </property>
+        <set name="courseHasGroupses" table="course_has_groups" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="COURSE_ID" not-null="true" />
+                <column name="course_COURSE_ID" not-null="true" />
             </key>
-            <one-to-many class="pojo.Lab" />
+            <one-to-many class="pojo.CourseHasGroups" />
         </set>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 5:32:31 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class Student  implements java.io.Serializable {
      private String fulName;
      private String userName;
      private String password;
+     private boolean activated;
      private Set groupses = new HashSet(0);
      private Set dileveryQueues = new HashSet(0);
      private Set requestAssesments = new HashSet(0);
@@ -25,16 +26,18 @@ public class Student  implements java.io.Serializable {
     }
 
 	
-    public Student(Department department, String userName, String password) {
+    public Student(Department department, String userName, String password, boolean activated) {
         this.department = department;
         this.userName = userName;
         this.password = password;
+        this.activated = activated;
     }
-    public Student(Department department, String fulName, String userName, String password, Set groupses, Set dileveryQueues, Set requestAssesments, Set assignments) {
+    public Student(Department department, String fulName, String userName, String password, boolean activated, Set groupses, Set dileveryQueues, Set requestAssesments, Set assignments) {
        this.department = department;
        this.fulName = fulName;
        this.userName = userName;
        this.password = password;
+       this.activated = activated;
        this.groupses = groupses;
        this.dileveryQueues = dileveryQueues;
        this.requestAssesments = requestAssesments;
@@ -75,6 +78,13 @@ public class Student  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+    public boolean isActivated() {
+        return this.activated;
+    }
+    
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
     public Set getGroupses() {
         return this.groupses;

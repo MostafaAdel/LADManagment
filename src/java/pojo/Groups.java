@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 5:32:31 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,16 +13,23 @@ public class Groups  implements java.io.Serializable {
 
      private Integer groupId;
      private String name;
+     private boolean activated;
      private Set students = new HashSet(0);
-     private Set courses = new HashSet(0);
+     private Set courseHasGroupses = new HashSet(0);
 
     public Groups() {
     }
 
-    public Groups(String name, Set students, Set courses) {
+	
+    public Groups(String name, boolean activated) {
+        this.name = name;
+        this.activated = activated;
+    }
+    public Groups(String name, boolean activated, Set students, Set courseHasGroupses) {
        this.name = name;
+       this.activated = activated;
        this.students = students;
-       this.courses = courses;
+       this.courseHasGroupses = courseHasGroupses;
     }
    
     public Integer getGroupId() {
@@ -39,6 +46,13 @@ public class Groups  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    public boolean isActivated() {
+        return this.activated;
+    }
+    
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
     public Set getStudents() {
         return this.students;
     }
@@ -46,12 +60,12 @@ public class Groups  implements java.io.Serializable {
     public void setStudents(Set students) {
         this.students = students;
     }
-    public Set getCourses() {
-        return this.courses;
+    public Set getCourseHasGroupses() {
+        return this.courseHasGroupses;
     }
     
-    public void setCourses(Set courses) {
-        this.courses = courses;
+    public void setCourseHasGroupses(Set courseHasGroupses) {
+        this.courseHasGroupses = courseHasGroupses;
     }
 
 

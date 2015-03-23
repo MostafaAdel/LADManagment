@@ -39,7 +39,7 @@ public class StudentDaoImpl implements StudentDao{
         Session session= createSession();
         String name=studentDto.getUserName();
         String pass=studentDto.getPassword();
-        Student student = new Student(null, studentDto.getUserName(), studentDto.getPassword());
+        Student student = new Student(null, studentDto.getUserName(), studentDto.getPassword(),true);
         Query hql=session.createQuery("from Student S where S.userName = :username and S.password= :pass ").setString( "username",name   ).setString("pass", pass);
         Iterator result =hql.list().iterator();
         closeSession(session);

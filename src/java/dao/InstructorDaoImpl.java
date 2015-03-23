@@ -34,7 +34,7 @@ public class InstructorDaoImpl implements  InstructorDao{
         Session session= createSession();
         String name=instructorDto.getUserName();
         String pass=instructorDto.getPassword();
-        Instructor instructor = new Instructor(instructorDto.getUserName(), instructorDto.getPassword());
+        Instructor instructor = new Instructor(instructorDto.getUserName(), instructorDto.getPassword(),true);
         Query hql=session.createQuery("from Instructor I where I.userName = :username and I.password= :pass ").setString( "username",name   ).setString("pass", pass);
         Iterator result =hql.list().iterator();
         closeSession(session);
