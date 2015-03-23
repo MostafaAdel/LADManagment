@@ -5,13 +5,14 @@
 	<title>Labs Page</title>
 </head>
 <body>
+<!--    LabsController-->
 	<header>
 	</header>
 	<div id="contents">
-                <a href="/LADManagment/LabsController?lab=1"<c:if test="${param.lab == '1'}"> style="color:#FF0000;"</c:if> >Lab 1</a>
-		<a href="/LADManagment/LabsController?lab=2"<c:if test="${param.lab == '2'}"> style="color:#FF0000;"</c:if> >Lab 2</a>
-		<a href="/LADManagment/LabsController?lab=3"<c:if test="${param.lab == '3'}"> style="color:#FF0000;"</c:if> >Lab 3</a>
-		<br/>
+                <c:forEach var="lab" items='${sessionScope.labs}'>
+                    <a href="/LADManagment/labs.jsp?lab=${lab.labId}"<c:if test="${param.lab == lab.labId}"> style="color:#FF0000;"</c:if> >${lab.name}</a>
+                </c:forEach>
+                    <br/>
 		<input type="button" value="start upload"/>
 		<input type="button" value="Shift Queues"/>
 		<input type="button" value="deactivate lab"/>

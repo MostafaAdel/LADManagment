@@ -7,11 +7,15 @@ package dao.instructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import pojo.Course;
+import pojo.CourseHasGroups;
+import pojo.CourseHasGroupsId;
 import pojo.Groups;
+import pojo.Lab;
 import pojo.Student;
 import utility.HibernateUtil;
 
@@ -20,6 +24,9 @@ import utility.HibernateUtil;
  * @author Hossam
  */
 public class LapPageInitiator {
+    
+    
+    
      private SessionFactory sessionFactory;
 
     public LapPageInitiator() {
@@ -32,26 +39,33 @@ public class LapPageInitiator {
         session.close();
     }
     
-    public ArrayList<Student> getStudentByDepartmentID (int groupId , String courseName){
+    public ArrayList<Lab> getLabsOfCourseGroup (int groupId , String courseName){
         Session session = createSession();
         Query hql =  session.createQuery("from Groups s where s.groupId = :groupid").setInteger("groupid", groupId);
         List groupList = hql.list();
         //id is unique only 1 element will get back
         Groups group = (Groups) groupList.get(0);
-        System.out.println(group.getName());
+//        System.out.println(group.getName());
         Query hql2 =  session.createQuery("from Course s where s.name = :coursename").setString("coursename", courseName);
         List courseList = hql2.list();
         //id is unique only 1 element will get back
         Course course = (Course) courseList.get(0);
-        System.out.println(course.getName());
+//        System.out.println(course.getName());
         
+        ArrayList<Lab> labsList = new ArrayList<>();
         
-        ArrayList <Student> students = new ArrayList<>();
-//        Query hql = session.createQuery("from Student s where s.department.departmentId = :departmentId ");
-//        hql.setParameter("departmentId", departmentID);
-//        students =  (ArrayList<Student>) hql.list();
-//        
+        Query hql3 = session.createQuery("from CourseHasGroups chg where chg.course = :course and chg.groups = :groups").setParameter("course", course).setParameter("groups", group);
+        List courseHasGroupsList = hql3.list();
+        for(Object chg : courseHasGroupsList){
+            CourseHasGroups chgInstance = (CourseHasGroups)chg;
+            Set labSet=chgInstance.getLabs();
+            for(Object l : labSet){
+                labsList.add((Lab)l);
+//                System.out.println(((Lab)l).getName());
+            }
+        }
+          
         closeSession(session);
-        return students;
+        return labsList;
     }
 }

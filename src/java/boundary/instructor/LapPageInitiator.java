@@ -6,11 +6,12 @@
 package boundary.instructor;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pojo.Lab;
 
 /**
  *
@@ -33,9 +34,12 @@ public class LapPageInitiator extends HttpServlet {
         int groupId = Integer.parseInt(groupIdString);
         String courseName = request.getParameter("course");
         
+        
         dao.instructor.LapPageInitiator  ins = new dao.instructor.LapPageInitiator();
-        ins.getStudentByDepartmentID(groupId, courseName);
-                
+        ArrayList<Lab> labs = ins.getLabsOfCourseGroup(groupId, courseName);
+        
+        request.getSession().setAttribute("labs", labs);
+        response.sendRedirect("/LADManagment/labs.jsp?lab="+labs.get(0).getLabId());
     }
 
     /**
