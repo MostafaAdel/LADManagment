@@ -59,6 +59,16 @@ public class LabsController extends HttpServlet {
         out.println(labNumber);
         out.println(NotifyAssistanceName);
         out.println(NotifyDeliveryName);
+        
+        if(labNumber.equals("1")){
+            response.sendRedirect("/LADManagment/labs.jsp?lab=1");
+        }
+        else if(labNumber.equals("2")){
+            response.sendRedirect("/LADManagment/labs.jsp?lab=2");
+        }
+        else if(labNumber.equals("3")){
+            response.sendRedirect("/LADManagment/labs.jsp?lab=3");
+        }
     }
 
     /**

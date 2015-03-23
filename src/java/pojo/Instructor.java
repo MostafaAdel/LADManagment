@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,20 +15,23 @@ public class Instructor  implements java.io.Serializable {
      private String fulName;
      private String userName;
      private String password;
+     private boolean activated;
      private Set labs = new HashSet(0);
 
     public Instructor() {
     }
 
 	
-    public Instructor(String userName, String password) {
+    public Instructor(String userName, String password, boolean activated) {
         this.userName = userName;
         this.password = password;
+        this.activated = activated;
     }
-    public Instructor(String fulName, String userName, String password, Set labs) {
+    public Instructor(String fulName, String userName, String password, boolean activated, Set labs) {
        this.fulName = fulName;
        this.userName = userName;
        this.password = password;
+       this.activated = activated;
        this.labs = labs;
     }
    
@@ -59,6 +62,13 @@ public class Instructor  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+    public boolean isActivated() {
+        return this.activated;
+    }
+    
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
     public Set getLabs() {
         return this.labs;

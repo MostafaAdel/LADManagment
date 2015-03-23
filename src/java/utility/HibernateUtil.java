@@ -5,7 +5,6 @@
  */
 package utility;
 
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -23,7 +22,9 @@ public class HibernateUtil {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
             // config file.
+            System.out.println("1");
             sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+            System.out.println("2");
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);

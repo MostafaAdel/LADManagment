@@ -18,7 +18,9 @@ import pojo.Student;
 public class GroupController {
 
     GroupDAOImpl groupDAOImpl = new GroupDAOImpl();
-
+//////////////////////////////////////////////////////////////
+//////////keyword////////////tobechanged/////////////////////
+    /////////////////////////////////////////////////////////
 //    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
 //        groupDAOImpl.addGroup(groupName, courseID, StudentIDs);
 //    }

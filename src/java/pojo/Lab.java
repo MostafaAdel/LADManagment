@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,14 +14,13 @@ public class Lab  implements java.io.Serializable {
 
      private Integer labId;
      private AssesmentQueue assesmentQueue;
-     private Course course;
+     private CourseHasGroups courseHasGroups;
      private DileveryQueue dileveryQueue;
      private Date startDate;
      private Date endDate;
      private String name;
      private Boolean uploadEnabled;
-     private Set dileveryQueues = new HashSet(0);
-     private Set assesmentQueues = new HashSet(0);
+     private boolean activated;
      private Set instructors = new HashSet(0);
      private Set assignments = new HashSet(0);
 
@@ -29,20 +28,21 @@ public class Lab  implements java.io.Serializable {
     }
 
 	
-    public Lab(Course course, DileveryQueue dileveryQueue) {
-        this.course = course;
+    public Lab(CourseHasGroups courseHasGroups, DileveryQueue dileveryQueue, String name, boolean activated) {
+        this.courseHasGroups = courseHasGroups;
         this.dileveryQueue = dileveryQueue;
+        this.name = name;
+        this.activated = activated;
     }
-    public Lab(AssesmentQueue assesmentQueue, Course course, DileveryQueue dileveryQueue, Date startDate, Date endDate, String name, Boolean uploadEnabled, Set dileveryQueues, Set assesmentQueues, Set instructors, Set assignments) {
+    public Lab(AssesmentQueue assesmentQueue, CourseHasGroups courseHasGroups, DileveryQueue dileveryQueue, Date startDate, Date endDate, String name, Boolean uploadEnabled, boolean activated, Set instructors, Set assignments) {
        this.assesmentQueue = assesmentQueue;
-       this.course = course;
+       this.courseHasGroups = courseHasGroups;
        this.dileveryQueue = dileveryQueue;
        this.startDate = startDate;
        this.endDate = endDate;
        this.name = name;
        this.uploadEnabled = uploadEnabled;
-       this.dileveryQueues = dileveryQueues;
-       this.assesmentQueues = assesmentQueues;
+       this.activated = activated;
        this.instructors = instructors;
        this.assignments = assignments;
     }
@@ -61,12 +61,12 @@ public class Lab  implements java.io.Serializable {
     public void setAssesmentQueue(AssesmentQueue assesmentQueue) {
         this.assesmentQueue = assesmentQueue;
     }
-    public Course getCourse() {
-        return this.course;
+    public CourseHasGroups getCourseHasGroups() {
+        return this.courseHasGroups;
     }
     
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseHasGroups(CourseHasGroups courseHasGroups) {
+        this.courseHasGroups = courseHasGroups;
     }
     public DileveryQueue getDileveryQueue() {
         return this.dileveryQueue;
@@ -103,19 +103,12 @@ public class Lab  implements java.io.Serializable {
     public void setUploadEnabled(Boolean uploadEnabled) {
         this.uploadEnabled = uploadEnabled;
     }
-    public Set getDileveryQueues() {
-        return this.dileveryQueues;
+    public boolean isActivated() {
+        return this.activated;
     }
     
-    public void setDileveryQueues(Set dileveryQueues) {
-        this.dileveryQueues = dileveryQueues;
-    }
-    public Set getAssesmentQueues() {
-        return this.assesmentQueues;
-    }
-    
-    public void setAssesmentQueues(Set assesmentQueues) {
-        this.assesmentQueues = assesmentQueues;
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
     public Set getInstructors() {
         return this.instructors;

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 22, 2015 6:56:52 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojo.RequestAssesment" table="request_assesment" catalog="labdb" optimistic-lock="version">
         <composite-id name="id" class="pojo.RequestAssesmentId">
@@ -18,8 +18,11 @@
         <many-to-one name="student" class="pojo.Student" update="false" insert="false" fetch="select">
             <column name="STUDENT_ID" not-null="true" />
         </many-to-one>
-        <property name="numberOfRequests" type="java.lang.Integer">
-            <column name="NUMBER_OF_REQUESTS" />
+        <property name="numberOfRequests" type="int">
+            <column name="NUMBER_OF_REQUESTS" not-null="true" />
+        </property>
+        <property name="existInQueue" type="boolean">
+            <column name="existInQueue" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

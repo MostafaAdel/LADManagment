@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,21 +12,22 @@ public class Course  implements java.io.Serializable {
 
 
      private Integer courseId;
-     private Groups groups;
      private String name;
-     private Set labs = new HashSet(0);
+     private boolean activated;
+     private Set courseHasGroupses = new HashSet(0);
 
     public Course() {
     }
 
 	
-    public Course(Groups groups) {
-        this.groups = groups;
+    public Course(String name, boolean activated) {
+        this.name = name;
+        this.activated = activated;
     }
-    public Course(Groups groups, String name, Set labs) {
-       this.groups = groups;
+    public Course(String name, boolean activated, Set courseHasGroupses) {
        this.name = name;
-       this.labs = labs;
+       this.activated = activated;
+       this.courseHasGroupses = courseHasGroupses;
     }
    
     public Integer getCourseId() {
@@ -36,13 +37,6 @@ public class Course  implements java.io.Serializable {
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
-    public Groups getGroups() {
-        return this.groups;
-    }
-    
-    public void setGroups(Groups groups) {
-        this.groups = groups;
-    }
     public String getName() {
         return this.name;
     }
@@ -50,12 +44,19 @@ public class Course  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public Set getLabs() {
-        return this.labs;
+    public boolean isActivated() {
+        return this.activated;
     }
     
-    public void setLabs(Set labs) {
-        this.labs = labs;
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+    public Set getCourseHasGroupses() {
+        return this.courseHasGroupses;
+    }
+    
+    public void setCourseHasGroupses(Set courseHasGroupses) {
+        this.courseHasGroupses = courseHasGroupses;
     }
 
 

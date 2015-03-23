@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,7 +12,7 @@ public class DileveryQueue  implements java.io.Serializable {
 
 
      private Integer dileveryQueueId;
-     private Lab lab;
+     private boolean activated;
      private Set students = new HashSet(0);
      private Set labs = new HashSet(0);
 
@@ -20,11 +20,11 @@ public class DileveryQueue  implements java.io.Serializable {
     }
 
 	
-    public DileveryQueue(Lab lab) {
-        this.lab = lab;
+    public DileveryQueue(boolean activated) {
+        this.activated = activated;
     }
-    public DileveryQueue(Lab lab, Set students, Set labs) {
-       this.lab = lab;
+    public DileveryQueue(boolean activated, Set students, Set labs) {
+       this.activated = activated;
        this.students = students;
        this.labs = labs;
     }
@@ -36,12 +36,12 @@ public class DileveryQueue  implements java.io.Serializable {
     public void setDileveryQueueId(Integer dileveryQueueId) {
         this.dileveryQueueId = dileveryQueueId;
     }
-    public Lab getLab() {
-        return this.lab;
+    public boolean isActivated() {
+        return this.activated;
     }
     
-    public void setLab(Lab lab) {
-        this.lab = lab;
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
     public Set getStudents() {
         return this.students;

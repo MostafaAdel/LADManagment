@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -7,10 +8,9 @@
 	<header>
 	</header>
 	<div id="contents">
-            
-		<a href="/LADManagment/LabsController?lab=1">Lab 1</a>
-		<a href="/LADManagment/LabsController?lab=2">Lab 2</a>
-		<a href="/LADManagment/LabsController?lab=3">Lab 3</a>
+                <a href="/LADManagment/LabsController?lab=1"<c:if test="${param.lab == '1'}"> style="color:#FF0000;"</c:if> >Lab 1</a>
+		<a href="/LADManagment/LabsController?lab=2"<c:if test="${param.lab == '2'}"> style="color:#FF0000;"</c:if> >Lab 2</a>
+		<a href="/LADManagment/LabsController?lab=3"<c:if test="${param.lab == '3'}"> style="color:#FF0000;"</c:if> >Lab 3</a>
 		<br/>
 		<input type="button" value="start upload"/>
 		<input type="button" value="Shift Queues"/>

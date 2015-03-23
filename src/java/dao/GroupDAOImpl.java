@@ -35,7 +35,9 @@ public class GroupDAOImpl {
     private void closeSession(Session session) {
         session.close();
     }
-
+//////////////////////////////////////////////////////////////
+//////////keyword////////////tobechanged/////////////////////
+    /////////////////////////////////////////////////////////
 //    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
 //        Session session = createSession();
 //        

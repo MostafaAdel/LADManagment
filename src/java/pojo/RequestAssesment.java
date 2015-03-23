@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 6:56:51 PM by Hibernate Tools 4.3.1
+// Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1
 
 
 
@@ -12,22 +12,18 @@ public class RequestAssesment  implements java.io.Serializable {
      private RequestAssesmentId id;
      private AssesmentQueue assesmentQueue;
      private Student student;
-     private Integer numberOfRequests;
+     private int numberOfRequests;
+     private boolean existInQueue;
 
     public RequestAssesment() {
     }
 
-	
-    public RequestAssesment(RequestAssesmentId id, AssesmentQueue assesmentQueue, Student student) {
-        this.id = id;
-        this.assesmentQueue = assesmentQueue;
-        this.student = student;
-    }
-    public RequestAssesment(RequestAssesmentId id, AssesmentQueue assesmentQueue, Student student, Integer numberOfRequests) {
+    public RequestAssesment(RequestAssesmentId id, AssesmentQueue assesmentQueue, Student student, int numberOfRequests, boolean existInQueue) {
        this.id = id;
        this.assesmentQueue = assesmentQueue;
        this.student = student;
        this.numberOfRequests = numberOfRequests;
+       this.existInQueue = existInQueue;
     }
    
     public RequestAssesmentId getId() {
@@ -51,12 +47,19 @@ public class RequestAssesment  implements java.io.Serializable {
     public void setStudent(Student student) {
         this.student = student;
     }
-    public Integer getNumberOfRequests() {
+    public int getNumberOfRequests() {
         return this.numberOfRequests;
     }
     
-    public void setNumberOfRequests(Integer numberOfRequests) {
+    public void setNumberOfRequests(int numberOfRequests) {
         this.numberOfRequests = numberOfRequests;
+    }
+    public boolean isExistInQueue() {
+        return this.existInQueue;
+    }
+    
+    public void setExistInQueue(boolean existInQueue) {
+        this.existInQueue = existInQueue;
     }
 
 
