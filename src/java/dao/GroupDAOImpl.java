@@ -38,30 +38,26 @@ public class GroupDAOImpl {
 //////////////////////////////////////////////////////////////
 //////////keyword////////////tobechanged/////////////////////
     /////////////////////////////////////////////////////////
-//    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
-//        Session session = createSession();
-//        
-//        Groups groups = new Groups(groupName, courseID, StudentIDs);
-//        groups.setName(groupName);
-//        session.beginTransaction();
-//        session.save(groups);
-//        session.getTransaction().commit();
-//        session.close();
-//        System.out.println("inserted ya prince");
-//    }
+
+    /**
+     * add by Mostafa initialize a deactivated Group without data
+     * @param activated boolean
+     * @param name String
+     * @return void
+     */
+    public void createGroup(String name, boolean activated) {
+        Session session = createSession();
+
+        Groups groups = new Groups(name, activated);
+        session.beginTransaction();
+        session.save(groups);
+        session.getTransaction().commit();
+        session.close();
+        System.out.println("inserted ya prince");
+    }
 
    /* public static void main(String[] args) {
         GroupDAOImpl aOImpl = new GroupDAOImpl();
-        Student s = new Student();
-        s.setStudentId(4);
-        Set std = new HashSet();
-        std.add(s);
-        
-        Course c = new Course();
-        c.setCourseId(1);
-        Set courses = new HashSet();
-        courses.add(c);
-        
-        aOImpl.addGroup("Ali", courses,std );
+        aOImpl.createGroup("firstGoup", false);
     }*/
 }
