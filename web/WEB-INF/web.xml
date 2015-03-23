@@ -20,6 +20,14 @@
         <servlet-name>UpdateGroup</servlet-name>
         <servlet-class>adminServlets.UpdateGroup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>courseBoundary</servlet-name>
+        <servlet-class>boundary.instructor.courseBoundary</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LapPageInitiator</servlet-name>
+        <servlet-class>boundary.instructor.LapPageInitiator</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstructorMainPage</servlet-name>
         <url-pattern>/InstructorMainPage</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>UpdateGroup</servlet-name>
         <url-pattern>/UpdateGroup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>courseBoundary</servlet-name>
+        <url-pattern>/courseBoundary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LapPageInitiator</servlet-name>
+        <url-pattern>/LapPageInitiator</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

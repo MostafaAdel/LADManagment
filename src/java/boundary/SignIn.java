@@ -73,11 +73,13 @@ public class SignIn extends HttpServlet {
                 response.sendRedirect("/LADManagment/welcomeStudent.jsp");
             }
         } else if (namePrefix.equals("ins_")) {
-            InstructorDto instructorDto = signInController.SigninInstructor(name, password);
+            InstructorDto instructorDto = signInController.SigninInstructor(namePostfix, password);
+            System.out.println(namePostfix);
             if (instructorDto != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("instructorDto", instructorDto);
-                response.sendRedirect("/LADManagment/welcomeIns.html");
+                System.out.println(instructorDto.getInstructorId());
+                response.sendRedirect("/LADManagment/InstructorMainPage");
             }else{
                 System.out.println("boundary.SignIn  --> no instructor with those username and password");
             }

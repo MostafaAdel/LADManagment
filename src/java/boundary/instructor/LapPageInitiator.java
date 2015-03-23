@@ -3,27 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boundary.instructor;
 
-import dto.InstructorDto;
-import dto.instructor.CourseDto;
-import dto.instructor.GroupDto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import logic.instructor.InstructorMianPageController;
+import pojo.Lab;
 
 /**
  *
- * @author azza
+ * @author Hossam
  */
-public class InstructorMainPage extends HttpServlet {
+public class LapPageInitiator extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -33,19 +27,19 @@ public class InstructorMainPage extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    InstructorMianPageController controller=new InstructorMianPageController();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(true);
-                InstructorDto instructorDto= (InstructorDto)session.getAttribute("instructorDto");
-                System.out.println(instructorDto.getInstructorId());
-                ArrayList<GroupDto> insGroups= controller.getInstructorGroups( instructorDto.getInstructorId());
-                
-                System.out.println(insGroups.get(0).getName());
-                session.setAttribute("insGroups", insGroups);
-                session.setAttribute("x", new Integer(2));
-                response.sendRedirect("/LADManagment/welcomeIns.jsp");
+        String groupIdString = request.getParameter("group");
+        int groupId = Integer.parseInt(groupIdString);
+        String courseName = request.getParameter("course");
+        
+        
+        dao.instructor.LapPageInitiator  ins = new dao.instructor.LapPageInitiator();
+        ArrayList<Lab> labs = ins.getLabsOfCourseGroup(groupId, courseName);
+        
+        request.getSession().setAttribute("labs", labs);
+        response.sendRedirect("/LADManagment/labs.jsp?lab="+labs.get(0).getLabId());
     }
 
     /**
@@ -59,7 +53,6 @@ public class InstructorMainPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
 
     /**

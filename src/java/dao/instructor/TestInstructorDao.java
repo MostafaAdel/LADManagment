@@ -1,6 +1,7 @@
 
 package dao.instructor;
 
+import dto.instructor.CourseDto;
 import dto.instructor.GroupDto;
 import dto.instructor.LabDto;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import pojo.Course;
 import pojo.CourseHasGroups;
 import pojo.Student;
 import pojo.Groups;
@@ -22,7 +24,6 @@ public class TestInstructorDao {
     
     public TestInstructorDao() {
         this.sessionFactory = HibernateUtil.getSessionFactory();
-        instructorId = 2;
     }
     private Session createSession(){
         return sessionFactory.openSession();
@@ -31,6 +32,29 @@ public class TestInstructorDao {
         session.close();
     }
     
+    
+    public ArrayList<CourseDto> getCoursesOfGroups(int groupId){
+     Session session =createSession();
+     //accumlate on this the output
+     ArrayList<CourseDto> CoursesOfGroup=new ArrayList<>(); 
+     
+     Query hql=session.createQuery("select courseHasGroupses from Groups g where g.groupId = :id").setInteger("id", groupId);
+     Iterator result=hql.list().iterator();
+     
+     ArrayList<CourseHasGroups> courseGroup=new ArrayList<>();
+     
+     if(result.hasNext()){
+       courseGroup.add((CourseHasGroups)result.next());
+       }
+     
+       for(CourseHasGroups cg:courseGroup){
+           Course course=cg.getCourse();
+        CourseDto courseDto = new CourseDto(course.getCourseId(), course.getName());
+        CoursesOfGroup.add(courseDto);
+       }
+       closeSession(session);
+     return CoursesOfGroup;
+     }
     
     
     public ArrayList<LabDto> getLabsOfCourse(String courseName,String groupName){
@@ -62,17 +86,21 @@ public class TestInstructorDao {
      ArrayList<GroupDto> InstructorGroups=new ArrayList<>(); 
      this.instructorId= insId;
      Query hql=session.createQuery("select labs from Instructor I where I.instructorId = :id").setInteger("id", instructorId);
+     
      Iterator result=hql.list().iterator();
-       closeSession(session);
+       
        ArrayList<Lab> labsOfInstructor=new ArrayList<>();
        if(result.hasNext()){
        labsOfInstructor.add((Lab)result.next());
        }
+       System.out.println(labsOfInstructor.get(0).getName());
        for(Lab lab:labsOfInstructor){
-//        Groups group = lab.getCourse().getGroups();
-//        GroupDto groupDto = new GroupDto(group.getGroupId(), group.getName());
-//        InstructorGroups.add(groupDto);
+        Groups group = lab.getCourseHasGroups().getGroups();
+        GroupDto groupDto = new GroupDto(group.getGroupId(), group.getName());
+        InstructorGroups.add(groupDto);
        }
+       System.out.println(InstructorGroups.get(0).getName());
+       closeSession(session);
      return InstructorGroups;
      }
 }
