@@ -16,14 +16,24 @@ public class GroupDto {
      private Integer groupId;
      private String name;
      private Set students = new HashSet(0);
+     private Set courseDto=new HashSet(0);
+
+    public Set getGroups() {
+        return courseDto;
+    }
+
+    public void setGroups(Set courseDto) {
+        this.courseDto = courseDto;
+    }
 
     public GroupDto() {
     }
 
-    public GroupDto(String name) {
+    public GroupDto(Integer groupId, String name) {
+        this.groupId = groupId;
         this.name = name;
     }
-
+    
     public Integer getGroupId() {
         return groupId;
     }
