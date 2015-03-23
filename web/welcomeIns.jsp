@@ -13,7 +13,49 @@ and open the template in the editor.
         <title>Instructor MainPage</title>
         <link href="assets/bootstrap.min.css" rel="stylesheet">
         <link href="assets/starter-template.css" rel="stylesheet">
+        <script>
+            var request2;
+            function getCourses(groupId){
+                if (window.XMLHttpRequest)
+                {
+                    request2=new XMLHttpRequest();
+                }
+                else if(window.ActiveXObject)
+                {
+                    request2 =new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                
+                request2.onreadystatechange = updateCourses;
+                
+                request2.open('GET','/LADManagment/courseBoundary?timeStamp='+new Date().getTime()+"&group="+groupId,true);
 
+                request2.send(null);
+            }
+            
+            function updateCourses(){
+                if(request2.readyState == 4){
+                    
+                    document.getElementById("coursesDiv").innerHTML="";
+                    
+                    var xmlDoc = request2.responseXML;
+                    var messages = xmlDoc.getElementsByTagName("course");
+                    for(var i=0 ; i<messages.length ; i++){
+                        currentCourse = messages[i];
+                        
+                        var out2 = currentCourse.childNodes[0].childNodes[0].nodeValue;
+                        
+                        var button = document.createElement("input");
+                        button.className = "btn";
+                        button.type="button";
+                        button.value=out2;
+                        
+                        
+                        
+                        document.getElementById("coursesDiv").appendChild(button);
+                    }
+                }
+            }
+        </script>
     </head>
     <body>
         
@@ -25,14 +67,18 @@ and open the template in the editor.
     <center>
         <div class="group-btn" style="margin-left: 250px;">
             <h1>Select Group </h1>
-            <input class="btn" value="EWD" type="button"/>
-            <input class="btn" value="MAD" type="button"/>
-            <c:out value='${sessionScope.x}'/>
+            <!--<c:out value='${sessionScope.x}'/> -->
+            <c:forEach var="group" items='${sessionScope.insGroups}'>
+                <input class="btn" value="${group.name}" type="button" onclick="getCourses(${group.groupId})"/>
+            </c:forEach>
         </div>
         <div class="group-btn">
             <h1>Select Course </h1>
-            <input class="btn" value="JAVA" type="button"/>
-            <input class="btn" value="OPP" type="button"/>
+            <div  id="coursesDiv">
+                
+            </div>
+<!--            <input class="btn" value="JAVA" type="button"/>
+            <input class="btn" value="OPP" type="button"/>-->
         </div>
     </center>
     <!-- Bootstrap core JavaScript
