@@ -21,8 +21,8 @@ public class GroupController {
 //////////////////////////////////////////////////////////////
 //////////keyword////////////tobechanged/////////////////////
     /////////////////////////////////////////////////////////
-//    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
-//        groupDAOImpl.addGroup(groupName, courseID, StudentIDs);
-//    }
+    public void createGroup(String groupName) {
+        groupDAOImpl.createGroup(groupName, true);
+    }
 
 }

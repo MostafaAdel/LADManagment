@@ -42,23 +42,23 @@ public class AddGroup extends HttpServlet {
 //////////////////////////////////////////////////////////////
 //////////keyword////////////tobechanged/////////////////////
     /////////////////////////////////////////////////////////
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//
-//            int courseID;
-//            int departmentID;
-//            String groupName;
-//            courseID = Integer.parseInt(request.getParameter("courseID"));
-//            departmentID = Integer.parseInt(request.getParameter("departmentID"));
-//            groupName = request.getParameter("groupName");
-//
-//            // get the Students List
-//            ArrayList<Student> students = studentController.getStudentByDepartmentID(departmentID);
-//            Set studentSet = new HashSet(students);
-//            // add the new group
-//            groupController.addGroup(groupName, courseID, studentSet);
-//            System.out.println("group add");
-//        }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+            //int courseID;
+           // int departmentID;
+            String groupName;
+           // courseID = Integer.parseInt(request.getParameter("courseID"));
+          //  departmentID = Integer.parseInt(request.getParameter("departmentID"));
+            groupName = request.getParameter("groupName");
+
+            // get the Students List
+         //   ArrayList<Student> students = studentController.getStudentByDepartmentID(departmentID);
+          //  Set studentSet = new HashSet(students);
+            // add the new group
+            groupController.createGroup(groupName);
+            System.out.println("group add");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
