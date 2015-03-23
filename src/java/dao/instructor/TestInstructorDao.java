@@ -12,6 +12,7 @@ import java.util.Iterator;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import pojo.CourseHasGroups;
 import pojo.Student;
 import utility.HibernateUtil;
 
@@ -39,15 +40,24 @@ public class TestInstructorDao {
     public ArrayList<LabDto> getLabsOfCourse(String courseName){
         Session session= createSession();
         
-        Query getLabsInCertainCourseQuery = session.createQuery("select labs from Course c where c.name = :course");
-        getLabsInCertainCourseQuery = getLabsInCertainCourseQuery.setString("course", courseName);
         
+        Query getLabsInCertainCourseQuery = session.createQuery("select courseHasGroupses from Course c where c.name = :course");
+        getLabsInCertainCourseQuery = getLabsInCertainCourseQuery.setString("course", courseName);
         Iterator result =getLabsInCertainCourseQuery.list().iterator();
         closeSession(session);
-        ArrayList<LabDto> labsOfCourse = new ArrayList<>();
-        if(result.hasNext()){
-            labsOfCourse.add((LabDto)result.next());
-        }    
-        return labsOfCourse;
+        ArrayList<CourseHasGroups> courseHasGroups = new ArrayList<>();
+        
+        while(result.hasNext()){
+            courseHasGroups.add((CourseHasGroups)result.next());
+        }
+        
+        ArrayList<LabDto> labs = new ArrayList<>();
+        for(CourseHasGroups chg : courseHasGroups){
+            Iterator labsIterator =  chg.getLabs().iterator();
+            while(labsIterator.hasNext()){
+                labs.add((LabDto)labsIterator.next());
+            }
+        }
+        return labs;
     }
 }

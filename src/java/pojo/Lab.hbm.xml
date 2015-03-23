@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 22, 2015 5:32:32 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojo.Lab" table="lab" catalog="labdb" optimistic-lock="version">
         <id name="labId" type="java.lang.Integer">
