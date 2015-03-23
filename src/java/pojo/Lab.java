@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 22, 2015 11:45:24 PM by Hibernate Tools 4.3.1
+// Generated Mar 23, 2015 4:20:09 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,7 +28,8 @@ public class Lab  implements java.io.Serializable {
     }
 
 	
-    public Lab(CourseHasGroups courseHasGroups, DileveryQueue dileveryQueue, String name, boolean activated) {
+    public Lab(AssesmentQueue assesmentQueue, CourseHasGroups courseHasGroups, DileveryQueue dileveryQueue, String name, boolean activated) {
+        this.assesmentQueue = assesmentQueue;
         this.courseHasGroups = courseHasGroups;
         this.dileveryQueue = dileveryQueue;
         this.name = name;

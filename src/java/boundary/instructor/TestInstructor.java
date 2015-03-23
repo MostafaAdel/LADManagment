@@ -37,6 +37,7 @@ public class TestInstructor extends HttpServlet {
             throws ServletException, IOException {
         String courseName = request.getParameter("course");
         String groupName = request.getParameter("group");
+        
         TestInstructorDao ti = new TestInstructorDao();
         ArrayList<LabDto> labsOfCourse = ti.getLabsOfCourse(courseName,groupName);
         System.out.println(labsOfCourse.size());
