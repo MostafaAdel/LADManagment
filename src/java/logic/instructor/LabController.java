@@ -146,15 +146,16 @@ public class LabController{
      */
     public ArrayList<StudentDto> getStudentsOfLab(LabDto labDto){
         ArrayList<StudentDto> studentsOfLab = new ArrayList<>();
+        
         CourseDto courseDto = labDto.getCourse();
-        Set groupsDto = courseDto.getGroupses();
-        for(Object group : groupsDto){
-            GroupDto  groupDto = (GroupDto)group;
-            Set students = groupDto.getStudents();
-            for(Object student : students){
-                StudentDto studentDto = (StudentDto)student;
-                studentsOfLab.add(studentDto);
-            }
+        
+        GroupDto groupDto = courseDto.getGroup();
+        
+        Set students = groupDto.getStudents();
+        
+        for(Object student : students){
+            StudentDto studentDto = (StudentDto)student;
+            studentsOfLab.add(studentDto);
         }
         return studentsOfLab;
     }

@@ -10,15 +10,36 @@ package dto;
  * @author Al-Jazayeerly
  */
 public class InstructorDto {
+    private int instructorId;
      private String fulName;
      private String userName;
      private String password;
 
+    public InstructorDto(int instructorId, String fulName, String userName, String password) {
+        this.instructorId = instructorId;
+        this.fulName = fulName;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public InstructorDto() {
+    }
+
+     
     public InstructorDto(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
 
+    public int getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(int instructorId) {
+        this.instructorId = instructorId;
+    }
+    
+    
     public String getFulName() {
         return fulName;
     }

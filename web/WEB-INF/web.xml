@@ -12,6 +12,15 @@
         <servlet-name>AddGroup</servlet-name>
         <servlet-class>adminServlets.AddGroup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InstructorMainPage</servlet-name>
+        <servlet-class>boundary.instructor.InstructorMainPage</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>InstructorMainPage</servlet-name>
+        <url-pattern>/InstructorMainPage</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LabsController</servlet-name>
         <url-pattern>/LabsController</url-pattern>

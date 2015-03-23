@@ -5,14 +5,16 @@
  */
 package dao.instructor;
 
-import dto.StudentDto;
+import dto.instructor.GroupDto;
 import dto.instructor.LabDto;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import pojo.Student;
+import pojo.Groups;
+import pojo.Lab;
 import utility.HibernateUtil;
 
 /**
@@ -50,4 +52,22 @@ public class TestInstructorDao {
         }    
         return labsOfCourse;
     }
+   public ArrayList<GroupDto> getGroupsOfInstructor(int insId){
+     Session session =createSession();
+     ArrayList<GroupDto> InstructorGroups=new ArrayList<>(); 
+     this.instructorId= insId;
+     Query hql=session.createQuery("select labs from Instructor I where I.instructorId = :id").setInteger("id", instructorId);
+     Iterator result=hql.list().iterator();
+       closeSession(session);
+       ArrayList<Lab> labsOfInstructor=new ArrayList<>();
+       if(result.hasNext()){
+       labsOfInstructor.add((Lab)result.next());
+       }
+       for(Lab lab:labsOfInstructor){
+        Groups group = lab.getCourse().getGroups();
+        GroupDto groupDto = new GroupDto(group.getGroupId(), group.getName());
+        InstructorGroups.add(groupDto);
+       }
+     return InstructorGroups;
+     }
 }

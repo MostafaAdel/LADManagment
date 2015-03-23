@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -12,5 +14,6 @@ and open the template in the editor.
     </head>
     <body>
         <div>Welcome Instructor</div>
+        <c:out value='${sessionScope.x}'/>
     </body>
 </html>

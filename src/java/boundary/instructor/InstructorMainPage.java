@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adminServlets;
 
+package boundary.instructor;
+
+import dto.InstructorDto;
+import dto.instructor.GroupDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logic.GroupController;
-import logic.StudentController;
-import pojo.Student;
+import javax.servlet.http.HttpSession;
+import logic.instructor.InstructorMianPageController;
 
 /**
  *
- * @author Mostafa_ITI
+ * @author azza
  */
-public class AddGroup extends HttpServlet {
+public class InstructorMainPage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,30 +33,7 @@ public class AddGroup extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    // Group Controller
-    GroupController groupController = new GroupController();
-    StudentController studentController = new StudentController();
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            int courseID;
-            int departmentID;
-            String groupName;
-            courseID = Integer.parseInt(request.getParameter("courseID"));
-            departmentID = Integer.parseInt(request.getParameter("departmentID"));
-            groupName = request.getParameter("groupName");
-
-            // get the Students List
-            ArrayList<Student> students = studentController.getStudentByDepartmentID(departmentID);
-            Set studentSet = new HashSet(students);
-            // add the new group
-        ///////////    groupController.addGroup(groupName, courseID, studentSet);
-            System.out.println("group add");
-        }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -67,10 +44,16 @@ public class AddGroup extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    InstructorMianPageController controller=new InstructorMianPageController();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       HttpSession session = request.getSession(true);
+                InstructorDto instructorDto= (InstructorDto)session.getAttribute("instructorDto");
+                ArrayList<GroupDto> insGroups= controller.getInstructorGroups( instructorDto.getInstructorId());
+                session.setAttribute("insGroups", insGroups);
+                session.setAttribute("x", new Integer(2));
+                response.sendRedirect("/LADManagment/welcomeIns.jsp");
     }
 
     /**
@@ -84,7 +67,7 @@ public class AddGroup extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

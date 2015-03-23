@@ -36,17 +36,17 @@ public class GroupDAOImpl {
         session.close();
     }
 
-    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
-        Session session = createSession();
-        
-        Groups groups = new Groups(groupName, courseID, StudentIDs);
-        groups.setName(groupName);
-        session.beginTransaction();
-        session.save(groups);
-        session.getTransaction().commit();
-        session.close();
-        System.out.println("inserted ya prince");
-    }
+//    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
+//        Session session = createSession();
+//        
+//        Groups groups = new Groups(groupName, courseID, StudentIDs);
+//        groups.setName(groupName);
+//        session.beginTransaction();
+//        session.save(groups);
+//        session.getTransaction().commit();
+//        session.close();
+//        System.out.println("inserted ya prince");
+//    }
 
    /* public static void main(String[] args) {
         GroupDAOImpl aOImpl = new GroupDAOImpl();

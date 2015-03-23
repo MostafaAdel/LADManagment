@@ -19,8 +19,8 @@ public class GroupController {
 
     GroupDAOImpl groupDAOImpl = new GroupDAOImpl();
 
-    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
-        groupDAOImpl.addGroup(groupName, courseID, StudentIDs);
-    }
+//    public void addGroup(String groupName, int courseID, Set<Student> StudentIDs) {
+//        groupDAOImpl.addGroup(groupName, courseID, StudentIDs);
+//    }
 
 }

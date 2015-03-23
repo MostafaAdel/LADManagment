@@ -16,8 +16,16 @@ public class CourseDto {
     private Integer courseId;
     private String name;
     private Set labs = new HashSet(0);
-    private Set groupses = new HashSet(0);
+    private GroupDto group=new GroupDto() ;
 
+    public GroupDto getGroup() {
+        return group;
+    }
+
+    public void setGroup(GroupDto group) {
+        this.group = group;
+    }
+    
     public CourseDto() {
     }
 
@@ -37,10 +45,7 @@ public class CourseDto {
         return labs;
     }
 
-    public Set getGroupses() {
-        return groupses;
-    }
-
+   
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
@@ -53,7 +58,5 @@ public class CourseDto {
         this.labs = labs;
     }
 
-    public void setGroupses(Set groupses) {
-        this.groupses = groupses;
-    }
+    
 }
