@@ -13,6 +13,24 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import pojo.AssesmentQueue;
+import pojo.AssesmentQueue;
+import pojo.Course;
+import pojo.Course;
+import pojo.CourseHasGroups;
+import pojo.CourseHasGroups;
+import pojo.CourseHasGroupsId;
+import pojo.CourseHasGroupsId;
+import pojo.Department;
+import pojo.Department;
+import pojo.DileveryQueue;
+import pojo.DileveryQueue;
+import pojo.Groups;
+import pojo.Groups;
+import pojo.Lab;
+import pojo.Lab;
+import pojo.Student;
+import pojo.Student;
 import utility.HibernateUtil;
 
 /**
@@ -94,34 +112,13 @@ public class NewClass {
         DileveryQueue dq4 = new DileveryQueue(true);
         
         
-        Lab lab1 = new Lab(aq1, chg1, dq1, "lab1" ,  true);
-        Lab lab2 = new Lab(aq2, chg1, dq2, "lab2" ,  true);
-        Lab lab3 = new Lab(aq3, chg1, dq3, "lab3" ,  true); 
-        Lab lab4 = new Lab(aq4, chg1, dq4, "lab4" ,  true); 
+        Lab lab1 = new Lab(aq1 , chg1, dq1 ,"lab1" ,  true);
+        Lab lab2 = new Lab(aq2 , chg1, dq2 ,"lab2" ,  true);
+        Lab lab3 = new Lab(aq3 , chg1, dq3 ,"lab3" ,  true); 
+        Lab lab4 = new Lab(aq4 , chg1, dq4 ,"lab4" ,  true); 
         
-        session.persist(chg1);
         
-        session.persist(lab1);
-        lab1.setCourseHasGroups(chg1);
-        session.persist(lab1);
-        lab2.setCourseHasGroups(chg1);
-        session.persist(lab2);
-        lab3.setCourseHasGroups(chg1);
-        session.persist(lab3);
-        lab4.setCourseHasGroups(chg1);
-        session.persist(lab4);
-        
-        aq1.setLab(lab1);
-        aq2.setLab(lab2);
-        aq3.setLab(lab3);
-        aq4.setLab(lab4);
-        
-        dq1.setLab(lab1);
-        dq2.setLab(lab2);
-        dq3.setLab(lab3);
-        dq4.setLab(lab4);
-        
-        session.persist(aq1);
+         session.persist(aq1);
         session.persist(aq2);
         session.persist(aq3);
         session.persist(aq4);
@@ -131,9 +128,34 @@ public class NewClass {
         session.persist(dq3);
         session.persist(dq4);
         
-         lab1.setAssesmentQueue(aq1);
         
+        session.persist(chg1);
+        lab1.setCourseHasGroups(chg1);
+        session.persist(lab1);
+        lab2.setCourseHasGroups(chg1);
+        session.persist(lab2);
+        lab3.setCourseHasGroups(chg1);
+        session.persist(lab3);
+        lab4.setCourseHasGroups(chg1);
+        session.persist(lab4);
         
+       
+//        
+//        lab1.setAssesmentQueue(aq1);
+//        lab2.setAssesmentQueue(aq2);
+//        lab3.setAssesmentQueue(aq3);
+//        lab4.setAssesmentQueue(aq4);
+//        
+//        lab1.setDileveryQueue(dq1);
+//        lab2.setDileveryQueue(dq2);
+//        lab3.setDileveryQueue(dq3);
+//        lab4.setDileveryQueue(dq4);
+//        
+//        session.saveOrUpdate(lab1);
+//        session.saveOrUpdate(lab2);
+//        session.saveOrUpdate(lab3);
+//        session.saveOrUpdate(lab4);
+//        
         System.out.println(lab2.getLabId());
         
         
