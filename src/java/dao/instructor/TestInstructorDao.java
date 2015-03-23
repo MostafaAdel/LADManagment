@@ -33,6 +33,7 @@ public class TestInstructorDao {
     public ArrayList<LabDto> getLabsOfCourse(String courseName){
         Session session= createSession();
         
+        
         Query getLabsInCertainCourseQuery = session.createQuery("select courseHasGroupses from Course c where c.name = :course");
         getLabsInCertainCourseQuery = getLabsInCertainCourseQuery.setString("course", courseName);
         Iterator result =getLabsInCertainCourseQuery.list().iterator();
