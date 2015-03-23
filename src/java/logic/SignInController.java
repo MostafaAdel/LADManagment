@@ -26,7 +26,7 @@ public class SignInController {
     public InstructorDto SigninInstructor(String userName,String password){
         InstructorDto instructorDto=new InstructorDto(userName, password);
         InstructorDaoImpl instructorDaoImpl=new InstructorDaoImpl();
-        instructorDto=instructorDaoImpl.signInStudent(instructorDto);
+        instructorDto=instructorDaoImpl.signInInstructor(instructorDto);
         return instructorDto;
     }
 }

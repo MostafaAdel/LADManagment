@@ -58,24 +58,27 @@ public class SignIn extends HttpServlet {
         String namePostfix = name.substring(4);
         String password = request.getParameter("pass");
         if (namePrefix.equals("std_")) {
-            StudentDto studentDto = signInController.SigninStudent(namePostfix, password);
+            StudentDto studentDto = signInController.SigninStudent(name, password);
             if (studentDto != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("studentDto", studentDto);
                 response.sendRedirect("/LADManagment/welcomeStudent.html");
             }
         } else if (namePrefix.equals("ins_")) {
-            InstructorDto instructorDto = signInController.SigninInstructor(namePostfix, password);
+            InstructorDto instructorDto = signInController.SigninInstructor(name, password);
             if (instructorDto != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("instructorDto", instructorDto);
                 response.sendRedirect("/LADManagment/welcomeIns.html");
+            }else{
+                System.out.println("boundary.SignIn  --> no instructor with those username and password");
             }
-
         } else {
-
+            //////////////////////////////////////////
+            ///////To be removed/////////////////
+            //////////////////////////////////////////
+            System.out.println("boundary.SignIn --> user dont specify a prefix");
         }
-
     }
 
     /**

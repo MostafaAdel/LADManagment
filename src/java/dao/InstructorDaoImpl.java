@@ -30,7 +30,7 @@ public class InstructorDaoImpl implements  InstructorDao{
         session.close();
     }
     
-     public InstructorDto signInStudent(InstructorDto instructorDto) {
+     public InstructorDto signInInstructor(InstructorDto instructorDto) {
         Session session= createSession();
         String name=instructorDto.getUserName();
         String pass=instructorDto.getPassword();
