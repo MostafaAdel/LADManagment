@@ -37,7 +37,7 @@ public class TestInstructorDao {
     }
 
     
-    public ArrayList<LabDto> getLabsOfCourse(String courseName){
+    public ArrayList<LabDto> getLabsOfCourse(String courseName , String groupName){
         Session session= createSession();
         
         

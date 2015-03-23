@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="/LADManagment/TestInstructor?course=abc">Choose Course1</a>
+        <a href="/LADManagment/TestInstructor?course=abc&group=ewd">Choose Course1</a>
     </body>
 </html>

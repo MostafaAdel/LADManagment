@@ -36,8 +36,9 @@ public class TestInstructor extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String courseName = request.getParameter("course");
+        String groupName = request.getParameter("group");
         TestInstructorDao ti = new TestInstructorDao();
-        ArrayList<LabDto> labsOfCourse = ti.getLabsOfCourse(courseName);
+        ArrayList<LabDto> labsOfCourse = ti.getLabsOfCourse(courseName,groupName);
         System.out.println(labsOfCourse.size());
         HttpSession session = request.getSession();
         //String username = (String)request.getAttribute("un");
