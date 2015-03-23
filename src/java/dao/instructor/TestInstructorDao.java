@@ -24,7 +24,6 @@ public class TestInstructorDao {
     
     public TestInstructorDao() {
         this.sessionFactory = HibernateUtil.getSessionFactory();
-        instructorId = 2;
     }
     private Session createSession(){
         return sessionFactory.openSession();
@@ -34,18 +33,22 @@ public class TestInstructorDao {
     }
     
     
-    public ArrayList<CourseDto> getCoursesOfGroups(int insId){
+    public ArrayList<CourseDto> getCoursesOfGroups(int groupId){
      Session session =createSession();
+     //accumlate on this the output
      ArrayList<CourseDto> CoursesOfGroup=new ArrayList<>(); 
-     this.instructorId= insId;
-     Query hql=session.createQuery("select labs from Instructor I where I.instructorId = :id").setInteger("id", instructorId);
+     
+     Query hql=session.createQuery("select courseHasGroupses from Groups g where g.groupId = :id").setInteger("id", groupId);
      Iterator result=hql.list().iterator();
-       ArrayList<Lab> labsOfInstructor=new ArrayList<>();
-       if(result.hasNext()){
-       labsOfInstructor.add((Lab)result.next());
+     
+     ArrayList<CourseHasGroups> courseGroup=new ArrayList<>();
+     
+     if(result.hasNext()){
+       courseGroup.add((CourseHasGroups)result.next());
        }
-       for(Lab lab:labsOfInstructor){
-           Course course=lab.getCourseHasGroups().getCourse();
+     
+       for(CourseHasGroups cg:courseGroup){
+           Course course=cg.getCourse();
         CourseDto courseDto = new CourseDto(course.getCourseId(), course.getName());
         CoursesOfGroup.add(courseDto);
        }

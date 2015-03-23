@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boundary.instructor;
 
-import dto.InstructorDto;
 import dto.instructor.CourseDto;
-import dto.instructor.GroupDto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,15 +13,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import logic.instructor.InstructorMianPageController;
 
 /**
  *
- * @author azza
+ * @author Hossam
  */
-public class InstructorMainPage extends HttpServlet {
+public class courseBoundary extends HttpServlet {
 
+    InstructorMianPageController controller=new InstructorMianPageController();
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -33,19 +31,30 @@ public class InstructorMainPage extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    InstructorMianPageController controller=new InstructorMianPageController();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(true);
-                InstructorDto instructorDto= (InstructorDto)session.getAttribute("instructorDto");
-                System.out.println(instructorDto.getInstructorId());
-                ArrayList<GroupDto> insGroups= controller.getInstructorGroups( instructorDto.getInstructorId());
-                
-                System.out.println(insGroups.get(0).getName());
-                session.setAttribute("insGroups", insGroups);
-                session.setAttribute("x", new Integer(2));
-                response.sendRedirect("/LADManagment/welcomeIns.jsp");
+        response.setContentType("text/xml");
+        String groupId = request.getParameter("group");
+        
+        String responseXmlText="";
+        ArrayList<CourseDto> courses = controller.getCoursesOfGroup(Integer.parseInt(groupId));
+        
+        if(courses.size() != 0){
+            responseXmlText += "<courses>";
+            for(int i=0 ; i<courses.size() ;i++){
+                responseXmlText += "<course>";
+                responseXmlText += "<name>";
+                responseXmlText += courses.get(i).getName();
+                responseXmlText += "</name>";
+                responseXmlText += "<group>";
+                responseXmlText += groupId;
+                responseXmlText += "</group>";
+                responseXmlText += "</course>";
+            }
+            responseXmlText += "</courses>";
+        }
+        response.getWriter().println(responseXmlText);
     }
 
     /**
@@ -59,7 +68,6 @@ public class InstructorMainPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
 
     /**

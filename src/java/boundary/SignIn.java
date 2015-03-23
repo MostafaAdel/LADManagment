@@ -70,6 +70,7 @@ public class SignIn extends HttpServlet {
             if (instructorDto != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("instructorDto", instructorDto);
+                System.out.println(instructorDto.getInstructorId());
                 response.sendRedirect("/LADManagment/InstructorMainPage");
             }else{
                 System.out.println("boundary.SignIn  --> no instructor with those username and password");

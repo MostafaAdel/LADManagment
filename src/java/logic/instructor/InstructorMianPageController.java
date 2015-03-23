@@ -22,7 +22,7 @@ public class InstructorMianPageController {
      return insDao.getGroupsOfInstructor(insId);
     } 
    
-    public ArrayList<CourseDto> getCoursesOfGroup(int insId){
-        return insDao.getCoursesOfGroups(insId);
+    public ArrayList<CourseDto> getCoursesOfGroup(int groupId){
+        return insDao.getCoursesOfGroups(groupId);
    }
 }

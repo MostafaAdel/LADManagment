@@ -39,8 +39,8 @@ public class InstructorDaoImpl implements  InstructorDao{
         Iterator result =hql.list().iterator();
         closeSession(session);
         if(result.hasNext()){
-           Instructor ins=(Instructor)result.next();
-           return instructorDto=new InstructorDto(ins.getInstructorId(),ins.getUserName());
+            Instructor ins = ((Instructor)result.next());
+           return new InstructorDto(ins.getInstructorId()   , ins.getUserName());
         }
         else 
             return null;
