@@ -1,5 +1,5 @@
 package pojo;
-// Generated Mar 23, 2015 4:20:09 AM by Hibernate Tools 4.3.1
+// Generated Mar 23, 2015 5:28:46 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class AssesmentQueue  implements java.io.Serializable {
      private Integer assesmentQueueId;
      private boolean activated;
      private Set requestAssesments = new HashSet(0);
-     private Set labs = new HashSet(0);
+     private Lab lab;
 
     public AssesmentQueue() {
     }
@@ -23,10 +23,10 @@ public class AssesmentQueue  implements java.io.Serializable {
     public AssesmentQueue(boolean activated) {
         this.activated = activated;
     }
-    public AssesmentQueue(boolean activated, Set requestAssesments, Set labs) {
+    public AssesmentQueue(boolean activated, Set requestAssesments, Lab lab) {
        this.activated = activated;
        this.requestAssesments = requestAssesments;
-       this.labs = labs;
+       this.lab = lab;
     }
    
     public Integer getAssesmentQueueId() {
@@ -50,12 +50,12 @@ public class AssesmentQueue  implements java.io.Serializable {
     public void setRequestAssesments(Set requestAssesments) {
         this.requestAssesments = requestAssesments;
     }
-    public Set getLabs() {
-        return this.labs;
+    public Lab getLab() {
+        return this.lab;
     }
     
-    public void setLabs(Set labs) {
-        this.labs = labs;
+    public void setLab(Lab lab) {
+        this.lab = lab;
     }
 
 

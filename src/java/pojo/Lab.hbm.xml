@@ -1,22 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 23, 2015 4:20:10 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 23, 2015 5:28:46 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="pojo.Lab" table="lab" catalog="labdb" optimistic-lock="version">
         <id name="labId" type="java.lang.Integer">
             <column name="LAB_ID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="assesmentQueue" class="pojo.AssesmentQueue" fetch="select">
-            <column name="assesment_queue_ASSESMENT_QUEUE_ID" not-null="true" />
-        </many-to-one>
+        <one-to-one name="dileveryQueue" class="pojo.DileveryQueue" />
+        <one-to-one name="assesmentQueue" class="pojo.AssesmentQueue" />
         <many-to-one name="courseHasGroups" class="pojo.CourseHasGroups" fetch="select">
             <column name="course_has_groups_course_COURSE_ID" not-null="true" />
             <column name="course_has_groups_groups_GROUP_ID" not-null="true" />
-        </many-to-one>
-        <many-to-one name="dileveryQueue" class="pojo.DileveryQueue" fetch="select">
-            <column name="dilevery_queue_DILEVERY_QUEUE_ID" not-null="true" />
         </many-to-one>
         <property name="startDate" type="timestamp">
             <column name="START_DATE" length="19" />
