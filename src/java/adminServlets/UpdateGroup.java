@@ -7,22 +7,22 @@ package adminServlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import logic.CourseContorller;
-import logic.DepartmentController;
 import logic.GroupController;
+import logic.StudentController;
+import pojo.Student;
 
 /**
  *
  * @author Mostafa_ITI
  */
-public class CreateGroupPrepration extends HttpServlet {
+public class UpdateGroup extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,25 +33,28 @@ public class CreateGroupPrepration extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    // Create objects from the Controlleres
-    DepartmentController departmentController = new DepartmentController();
-    CourseContorller courseContorller = new CourseContorller();
-    GroupController groupController = new GroupController();
-
+    
+    private GroupController groupController = new GroupController();
+    private StudentController studentController = new StudentController();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            // get all departments
-            Iterator<Object[]> departments = departmentController.getAllDepartments();
-            // get All courses
-            Iterator<Object[]> courses = courseContorller.getAllCourses();
-            Iterator<Object[]> groups = groupController.getAllGroupsNames();
-            session.setAttribute("departments", departments);
-            session.setAttribute("courses", courses);
-            session.setAttribute("groups", groups);
-            response.sendRedirect("../LADManagment/Admin/UpdateGroup.jsp");
+            int courseID;
+            int departmentID;
+            String groupName;
+            
+            courseID = Integer.parseInt(request.getParameter("courseID"));
+            departmentID = Integer.parseInt(request.getParameter("departmentID"));
+            groupName = request.getParameter("groupName");
+
+       //     get the Students List
+            ArrayList<Student> students = studentController.getStudentByDepartmentID(departmentID);
+            Set studentSet = new HashSet(students);
+        //    add the new group
+            groupController.updateGroup();
+            System.out.println("group add");
         }
     }
 

@@ -15,7 +15,7 @@
     <body>
         <h1>Create Group</h1>
         <br>
-        <form action="../LADManagment/AddGroup" method="POST">
+        <form action="../AddGroup" method="POST">
             <table border="0">
                 <tbody>
                     <tr>

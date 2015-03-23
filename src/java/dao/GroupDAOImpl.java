@@ -8,7 +8,9 @@ package dao;
 import dto.CourseDTO;
 import dto.GroupDTO;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import pojo.Course;
@@ -41,6 +43,7 @@ public class GroupDAOImpl {
 
     /**
      * add by Mostafa initialize a deactivated Group without data
+     *
      * @param activated boolean
      * @param name String
      * @return void
@@ -56,8 +59,24 @@ public class GroupDAOImpl {
         System.out.println("inserted ya prince");
     }
 
-   /* public static void main(String[] args) {
-        GroupDAOImpl aOImpl = new GroupDAOImpl();
-        aOImpl.createGroup("firstGoup", false);
-    }*/
+    /**
+     * add by Mostafa get All Groups Names
+     *
+     * @return Iterator of Group Names
+     */
+    public Iterator<Object[]> getGroupsNames() {
+        Iterator<Object[]> result;
+        Session session = createSession();
+        Query hql = session.createQuery("Select g.id,g.name from Groups g");
+        result = hql.list().iterator();
+        return result;
+    }
+    /* public static void main(String[] args) {
+     GroupDAOImpl aOImpl = new GroupDAOImpl();
+     Iterator<Object[]> result= aOImpl.getGroupsNames();
+     while (result.hasNext()) {
+     System.out.println( result.next()[1].toString());
+             
+     }
+     }*/
 }

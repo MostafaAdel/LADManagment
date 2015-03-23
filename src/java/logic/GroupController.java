@@ -7,7 +7,10 @@ package logic;
 
 import dao.GroupDAOImpl;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import pojo.Course;
 import pojo.Student;
 
@@ -18,11 +21,26 @@ import pojo.Student;
 public class GroupController {
 
     GroupDAOImpl groupDAOImpl = new GroupDAOImpl();
-//////////////////////////////////////////////////////////////
-//////////keyword////////////tobechanged/////////////////////
-    /////////////////////////////////////////////////////////
+    /**
+     * By: Mostafa
+     * initialize a new group with a name
+     * @param groupName String
+     */
     public void createGroup(String groupName) {
-        groupDAOImpl.createGroup(groupName, true);
+        groupDAOImpl.createGroup(groupName, false);
+    }
+    
+    /**
+     * 
+     * @return Iterator Object [ id, Name ] of the Group
+     */
+   public Iterator<Object[]> getAllGroupsNames() {
+        Iterator<Object[]> groups = groupDAOImpl.getGroupsNames();
+        return groups;
+    }
+    
+    public void updateGroup (){
+        
     }
 
 }

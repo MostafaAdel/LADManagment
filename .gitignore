@@ -1,7 +1,5 @@
 *.class
  
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
  
 # Package Files #
 *.jar
@@ -23,25 +21,6 @@ nbactions.xml
 nb-configuration.xml
 .nb-gradle/
  
-# Eclipse
-.classpath
-.project
-.settings/
+
  
-# Intellij
-.idea/
-*.iml
-*.iws
- 
-# Mac
-.DS_Store
- 
-# Maven
-log/
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
+
