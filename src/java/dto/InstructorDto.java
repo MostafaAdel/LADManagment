@@ -15,6 +15,11 @@ public class InstructorDto {
      private String userName;
      private String password;
 
+    public InstructorDto(int instructorId, String userName) {
+        this.instructorId = instructorId;
+        this.userName = userName;
+    }
+
     public InstructorDto(int instructorId, String fulName, String userName, String password) {
         this.instructorId = instructorId;
         this.fulName = fulName;

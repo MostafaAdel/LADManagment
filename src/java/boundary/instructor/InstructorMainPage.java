@@ -7,6 +7,7 @@
 package boundary.instructor;
 
 import dto.InstructorDto;
+import dto.instructor.CourseDto;
 import dto.instructor.GroupDto;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,18 +26,6 @@ import logic.instructor.InstructorMianPageController;
 public class InstructorMainPage extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
@@ -48,9 +37,12 @@ public class InstructorMainPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession(true);
+                HttpSession session = request.getSession(true);
                 InstructorDto instructorDto= (InstructorDto)session.getAttribute("instructorDto");
+                System.out.println(instructorDto.getInstructorId());
                 ArrayList<GroupDto> insGroups= controller.getInstructorGroups( instructorDto.getInstructorId());
+                
+                
                 session.setAttribute("insGroups", insGroups);
                 session.setAttribute("x", new Integer(2));
                 response.sendRedirect("/LADManagment/welcomeIns.jsp");

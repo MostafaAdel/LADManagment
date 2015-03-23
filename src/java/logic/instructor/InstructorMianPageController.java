@@ -7,6 +7,7 @@
 package logic.instructor;
 
 import dao.instructor.TestInstructorDao;
+import dto.instructor.CourseDto;
 import dto.instructor.GroupDto;
 import java.util.ArrayList;
 
@@ -16,7 +17,12 @@ import java.util.ArrayList;
  */
 public class InstructorMianPageController {
     TestInstructorDao insDao=new TestInstructorDao();
-   public ArrayList<GroupDto> getInstructorGroups(int insId){
-return insDao.getGroupsOfInstructor(insId);
-   } 
+    
+    public ArrayList<GroupDto> getInstructorGroups(int insId){
+     return insDao.getGroupsOfInstructor(insId);
+    } 
+   
+    public ArrayList<CourseDto> getCoursesOfGroup(int insId){
+        return insDao.getCoursesOfGroups(insId);
+   }
 }

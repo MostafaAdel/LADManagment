@@ -58,18 +58,19 @@ public class SignIn extends HttpServlet {
         String namePostfix = name.substring(4);
         String password = request.getParameter("pass");
         if (namePrefix.equals("std_")) {
-            StudentDto studentDto = signInController.SigninStudent(name, password);
+            StudentDto studentDto = signInController.SigninStudent(namePostfix, password);
             if (studentDto != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("studentDto", studentDto);
                 response.sendRedirect("/LADManagment/welcomeStudent.html");
             }
         } else if (namePrefix.equals("ins_")) {
-            InstructorDto instructorDto = signInController.SigninInstructor(name, password);
+            InstructorDto instructorDto = signInController.SigninInstructor(namePostfix, password);
+            System.out.println(namePostfix);
             if (instructorDto != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("instructorDto", instructorDto);
-                response.sendRedirect("/LADManagment/welcomeIns.html");
+                response.sendRedirect("/LADManagment/InstructorMainPage");
             }else{
                 System.out.println("boundary.SignIn  --> no instructor with those username and password");
             }

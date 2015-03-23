@@ -22,6 +22,12 @@ public class CourseDto {
         return group;
     }
 
+    public CourseDto(Integer courseId, String name) {
+        this.courseId = courseId;
+        this.name = name;
+    }
+    
+    
     public void setGroup(GroupDto group) {
         this.group = group;
     }

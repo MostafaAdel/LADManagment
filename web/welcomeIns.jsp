@@ -28,6 +28,9 @@ and open the template in the editor.
             <input class="btn" value="EWD" type="button"/>
             <input class="btn" value="MAD" type="button"/>
             <c:out value='${sessionScope.x}'/>
+            <c:forEach var="group" items='${sessionScope.insGroups}'>
+             <c:out value="${group.name}"></c:out>
+            </c:forEach>
         </div>
         <div class="group-btn">
             <h1>Select Course </h1>
