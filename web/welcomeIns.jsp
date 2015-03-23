@@ -44,14 +44,19 @@ and open the template in the editor.
                         
                         var out2 = currentCourse.childNodes[0].childNodes[0].nodeValue;
                         
+                        var hyperLink = document.createElement("a");
+                        hyperLink.href="/LADManagment/LapPageInitiator?group="+currentCourse.childNodes[1].childNodes[0].nodeValue
+                                                         +"&course="+out2;
+                        
+                        
                         var button = document.createElement("input");
                         button.className = "btn";
                         button.type="button";
                         button.value=out2;
                         
+                        hyperLink.appendChild(button);
                         
-                        
-                        document.getElementById("coursesDiv").appendChild(button);
+                        document.getElementById("coursesDiv").appendChild(hyperLink);
                     }
                 }
             }
