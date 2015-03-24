@@ -39,6 +39,7 @@ public class InstructorMainPage extends HttpServlet {
             throws ServletException, IOException {
                 HttpSession session = request.getSession(true);
                 InstructorDto instructorDto= (InstructorDto)session.getAttribute("instructorDto");
+                System.out.println(instructorDto.getInstructorId());
                 ArrayList<GroupDto> insGroups= controller.getInstructorGroups( instructorDto.getInstructorId());
                 
                 System.out.println(insGroups.get(0).getName());

@@ -10,7 +10,6 @@ and open the template in the editor.
 <html>
     <head>
         <title>Create Group</title>
-        <link rel="stylesheet" type="text/css" href="../css/Adminstyle.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -21,24 +20,16 @@ and open the template in the editor.
             <tbody>
                 <tr>
                     <td>Group Name</td>
-                    <td> 
-                        <select id="groupID" name="groupID">
-                            <c:forEach var="group" items="${groups}">
-                                <option value="${group[0]}"> ${group[1]} </option>
-                            </c:forEach>
-                        </select> 
-                    </td>
+                    <td> <input type="text" name="groupName" value="" /> </td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Course Name: </td>
-                    <td> 
-                        <select id="courseID" name="courseID">
+                    <td> <select id="courseID" name="courseID">
                             <c:forEach var="course" items="${courses}">
                                 <option value="${course[0]}"> ${course[1]} </option>
                             </c:forEach>
-                        </select> 
-                    </td>
+                        </select> </td>
                     <td></td>
                 </tr>
                 <tr>
@@ -55,7 +46,7 @@ and open the template in the editor.
                 <tr>
                     <td></td>
                     <td></td>
-                    <td> <input type="submit" value="Update " class="button" /> </td>
+                    <td> <input type="submit" value="Create " /> </td>
                 </tr>
             </tbody>
         </table>

@@ -1,7 +1,8 @@
-package pojo;
+package dto;
 // Generated Mar 23, 2015 7:12:27 AM by Hibernate Tools 4.3.1
 
 
+import pojo.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

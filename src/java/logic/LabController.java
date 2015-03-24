@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package logic;
+
+import dao.instructor.LabDaoImpl;
+import dto.instructor.StudentDto;
+import pojo.Lab;
 
 /**
  *
- * @author Al-Jazayeerly
+ * @author Mostafa_ITI
  */
-public interface InstructorDao {
-    
+public class LabController {
+
     
 }
