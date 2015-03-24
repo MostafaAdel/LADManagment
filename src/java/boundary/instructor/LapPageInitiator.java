@@ -11,7 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.instructor.LabController;
 import pojo.Lab;
+import pojo.Student;
 
 /**
  *
@@ -37,8 +39,17 @@ public class LapPageInitiator extends HttpServlet {
         
         dao.instructor.LapPageInitiator  ins = new dao.instructor.LapPageInitiator();
         ArrayList<Lab> labs = ins.getLabsOfCourseGroup(groupId, courseName);
+        ArrayList<Student> students = ins.getStudentsOfGroup(groupId);
         
+        boolean labStatus = LabController.isRunning(labs.get(0));
+                System.out.println(LabController.isRunning(labs.get(3)));
+                System.out.println(LabController.isRunning(labs.get(2)));
+                System.out.println(LabController.isRunning(labs.get(1)));
+                
         request.getSession().setAttribute("labs", labs);
+        request.getSession().setAttribute("students", students);
+        request.getSession().setAttribute("labStatus", labStatus);
+        
         response.sendRedirect("/LADManagment/labs.jsp?lab="+labs.get(0).getLabId());
     }
 
