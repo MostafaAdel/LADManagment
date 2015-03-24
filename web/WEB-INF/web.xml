@@ -29,8 +29,16 @@
         <servlet-class>boundary.instructor.LapPageInitiator</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeliveryQueueServelt</servlet-name>
+        <servlet-class>boundary.DeliveryQueueServelt</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AssessmentQueueServelt</servlet-name>
         <servlet-class>boundary.AssessmentQueueServelt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDeliveryRequest</servlet-name>
+        <servlet-class>boundary.AddDeliveryRequest</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>InstructorMainPage</servlet-name>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>AssessmentQueueServelt</servlet-name>
         <url-pattern>/AssessmentQueueServelt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeliveryQueueServelt</servlet-name>
+        <url-pattern>/DeliveryQueueServelt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDeliveryRequest</servlet-name>
+        <url-pattern>/AddDeliveryRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -36,14 +36,23 @@ public class StudentDaoImpl implements StudentDao{
 
     
     public StudentDto signInStudent(StudentDto studentDto) {
+        boolean flag = false;
         Session session= createSession();
         String name=studentDto.getUserName();
         String pass=studentDto.getPassword();
         Student student = new Student(null, studentDto.getUserName(), studentDto.getPassword(),true);
         Query hql=session.createQuery("from Student S where S.userName = :username and S.password= :pass ").setString( "username",name   ).setString("pass", pass);
         Iterator result =hql.list().iterator();
-        closeSession(session);
         if(result.hasNext()){
+        student = (Student) result.next();
+        flag = true;
+        }
+       // System.out.println(student.getFulName());
+        studentDto.setStudentId(student.getStudentId());
+        studentDto.setFulName(student.getFulName());
+        closeSession(session);
+        System.out.println(studentDto.getStudentId());
+        if(flag){
            return studentDto;
         }
         else 

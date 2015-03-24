@@ -65,10 +65,11 @@ public class SignIn extends HttpServlet {
             System.out.println("Entered Student Sign in");
             System.out.println("*******" + namePostfix);
             System.out.println("*******" + password);
-            StudentDto studentDto = signInController.SigninStudent(namePostfix, "password");
-
+            StudentDto studentDto = signInController.SigninStudent(namePostfix,"password");
+            
             if (studentDto != null) {
                 System.out.println("User name exist");
+                System.out.println(studentDto.getFulName());
                 HttpSession session = request.getSession(true);
                 Lab lab = labController.getActiveLab(studentDto.getUserName());
                 session.setAttribute("studentDto", studentDto);

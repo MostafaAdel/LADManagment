@@ -7,6 +7,7 @@
 package logic.instructor;
 
 import dao.AssessmentQueueDAO;
+import dao.DeliveryQueueDAO;
 import dao.instructor.LabDao;
 import dao.instructor.LabDaoImpl;
 import dao.utility.DaoProvider;
@@ -32,6 +33,7 @@ public class LabController {
     private LabDao labDao;
     LabDaoImpl labDaoImpl = new LabDaoImpl();
     AssessmentQueueDAO assessmentQueueDAO = new AssessmentQueueDAO();
+    DeliveryQueueDAO deliveryQueueDAO = new DeliveryQueueDAO();
     private int instructorId;
 
     /**
@@ -46,9 +48,8 @@ public class LabController {
     }
 
     public LabController() {
-        
-    }
 
+    }
 
     /**
      *
@@ -238,162 +239,36 @@ public class LabController {
         return labDaoImpl.getActiveLab(studentName);
     }
 
-    public ArrayList<Student> getAssesementQueue(String studentUsername){
-        
+    public ArrayList<Student> getAssesementQueue(String studentUsername) {
+
         return assessmentQueueDAO.getStudentsOnAssessmentQueue(studentUsername);
-        
-    }
-    
-    
-    
 
-
-
-  
-
-    /**
-     * check if the current time is between the start date and the end date
-     *
-     * @return true if the lab is running or false otherwise
-     */
-    public boolean isRunning() {
-        //get current time
-        Date currentTime = new Date();
-        boolean result = currentTime.after(this.labViewdto.getStartDate())
-                && currentTime.before(this.labViewdto.getEndDate());
-        return result;
     }
 
-   
+    public ArrayList<Student> getDeliveryQueue(String studentUsername) {
 
-    /**
-     * enable upload if it is not enabled
-     */
-    public void enableUpload() {
-        if (!labViewdto.isUploadEnabled() && isRunning()) {
-            labDao.enableUpload(labViewdto);
-        }
+        return deliveryQueueDAO.getStudentsOnDeliveryQueue(studentUsername);
+
     }
 
-    /**
-     * gets next five labs after the current one in the group
-     *
-     * @return array list of lab view dto for the next five labs
-     */
-    public ArrayList<LabDto> getNextFiveLabs() {
-        ArrayList<LabDto> nextFiveLabs;
-        nextFiveLabs = labDao.getNextFiveLabs(labViewdto);
-        return nextFiveLabs;
-    }
-
-    /**
-     * shift queues for a certain lab
-     *
-     * @param shiftedToLab lab to shift queues for
-     */
-    public void shift(LabDto shiftedToLab) {
-        if (labViewdto.getAssesmentQueue().getRequestAssesments().size() > 0
-                || labViewdto.getDileveryQueue().getStudents().size() > 0) {
-            labDao.shift(labViewdto, shiftedToLab);
-        }
-    }
-
-    /**
-     * return the studentDto object for the student with a specific name
-     *
-     * @param studentName to use for getting the student dto
-     * @return studentDto for the student with this name
-     */
-    private StudentDto getStudent(String studentName) {
-        ArrayList<StudentDto> students = getStudentsOfLab(labViewdto);
-        for (StudentDto student : students) {
-            if (student.getFulName().equals(studentName)) {
-                return student;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * get students of specific lab
-     *
-     * @param labDto lab to get its student
-     * @return students in this lab
-     */
-    public ArrayList<StudentDto> getStudentsOfLab(LabDto labDto) {
-        ArrayList<StudentDto> studentsOfLab = new ArrayList<>();
-
-        CourseDto courseDto = labDto.getCourse();
-
-        GroupDto groupDto = courseDto.getGroup();
-
-        Set students = groupDto.getStudents();
-
-        for (Object student : students) {
-            StudentDto studentDto = (StudentDto) student;
-            studentsOfLab.add(studentDto);
-        }
-        return studentsOfLab;
-    }
-
-    /**
-     * update the selectedStudent record to add notification for delivery with
-     * the name of the instructor
-     *
-     * @param studentName
-     */
-    public void notifyDelivery(String studentName) {
-        if (isRunning()) {
-            StudentDto selectedStudent = getStudent(studentName);
-            labDao.notifyDelivery(selectedStudent, instructorId);
-        }
-    }
-
-
-    /**
-     * get the assignments of a specific student
-     *
-     * @param studentName selected student name
-     * @return the assignments of the selected student
-     */
-    public ArrayList<AssignmentDto> getAssignementOfStudent(String studentName) {
-        if (!isRunning()) {
-            StudentDto selectedStudent = getStudent(studentName);
-            Set assignments = selectedStudent.getAssignments();
-
-            ArrayList<Object> assignmentObjects = InstructorUtility.fromSetToArrayList(assignments);
-
-            ArrayList<AssignmentDto> assignmentDtos = new ArrayList<>();
-
-            for (Object obj : assignmentObjects) {
-                AssignmentDto assign = ((AssignmentDto) obj);
-                assignmentDtos.add(assign);
-            }
-            return assignmentDtos;
-        }
-        return null;
-    }
-
-
-    
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////new methods////////////////////
     //////////////////////////////////////////////////////////////////
+
     /**
      * check if the current time is between the start date and the end date
-     * 
+     *
      * @return true if the lab is running or false otherwise
      */
-    public static boolean isRunning(Lab lab){
-         System.out.println(lab.getStartDate());
-         System.out.println(lab.getEndDate());
-         System.out.println(new Date());
+    public static boolean isRunning(Lab lab) {
+        System.out.println(lab.getStartDate());
+        System.out.println(lab.getEndDate());
+        System.out.println(new Date());
         //get current time
         Date currentTime = new Date();
-        boolean result = currentTime.after(lab.getStartDate()) 
-                            && currentTime.before(lab.getEndDate());
+        boolean result = currentTime.after(lab.getStartDate())
+                && currentTime.before(lab.getEndDate());
         return result;
     }
-    
-    
+
 }

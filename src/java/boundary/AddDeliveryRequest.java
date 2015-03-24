@@ -5,22 +5,19 @@
  */
 package boundary;
 
+import dao.DeliveryQueueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logic.instructor.LabController;
-import pojo.Lab;
-import pojo.Student;
 
 /**
  *
  * @author Mostafa_ITI
  */
-public class AssessmentQueueServelt extends HttpServlet {
+public class AddDeliveryRequest extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,23 +28,16 @@ public class AssessmentQueueServelt extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String studentUsername= request.getParameter("uname");
-            System.out.println("Comming From Ajax: >> " + studentUsername);
-            LabController labController = new LabController();
-            ArrayList<Student> student = labController.getAssesementQueue(studentUsername);
-            Lab lab = new Lab();
-            StringBuilder studentsFullNames = new StringBuilder();
-            for (int i = 0; i < student.size(); i++) {
-                studentsFullNames.append("\n"+student.get(i).getFulName());
-            }
-            out.print(studentsFullNames);
-            System.out.println("#### From Assessment "+studentsFullNames);
+           
+            String labName = request.getParameter("labName");
+            int studentID = Integer.parseInt(request.getParameter("studentID"));
+            DeliveryQueueDAO deliveryQueueDAO = new DeliveryQueueDAO();
+            deliveryQueueDAO.addRequestDelivery(labName, studentID);
         }
     }
 
