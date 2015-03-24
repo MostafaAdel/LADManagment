@@ -5,6 +5,7 @@
  */
 package logic.instructor;
 
+import dao.AssessmentQueueDAO;
 import dao.instructor.LabDao;
 import dao.instructor.LabDaoImpl;
 import dao.utility.DaoProvider;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 import pojo.Lab;
+import pojo.Student;
 import utility.InstructorUtility;
 
 /**
@@ -28,6 +30,7 @@ public class LabController {
     private LabDto labViewdto;
     private LabDao labDao;
     LabDaoImpl labDaoImpl = new LabDaoImpl();
+    AssessmentQueueDAO assessmentQueueDAO = new AssessmentQueueDAO();
     private int instructorId;
 
     /**
@@ -234,4 +237,9 @@ public class LabController {
         return labDaoImpl.getActiveLab(studentName);
     }
 
+    public ArrayList<Student> getAssesementQueue(String studentUsername){
+        
+        return assessmentQueueDAO.getStudentsOnAssessmentQueue(studentUsername);
+        
+    }
 }

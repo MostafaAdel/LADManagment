@@ -28,6 +28,10 @@
         <servlet-name>LapPageInitiator</servlet-name>
         <servlet-class>boundary.instructor.LapPageInitiator</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AssessmentQueueServelt</servlet-name>
+        <servlet-class>boundary.AssessmentQueueServelt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstructorMainPage</servlet-name>
         <url-pattern>/InstructorMainPage</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>LapPageInitiator</servlet-name>
         <url-pattern>/LapPageInitiator</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssessmentQueueServelt</servlet-name>
+        <url-pattern>/AssessmentQueueServelt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

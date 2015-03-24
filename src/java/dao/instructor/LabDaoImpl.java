@@ -94,7 +94,7 @@ public class LabDaoImpl implements LabDao {
         Iterator<Student> studentIterator = null;
         Query hql = session.createQuery("from Lab l where l.activated = 1 ");
         labIterator = hql.list().iterator();
-        
+
         while (labIterator.hasNext() && !flag) {
             lab = labIterator.next();
             studentIterator = lab.getCourseHasGroups().getGroups().getStudents().iterator();
@@ -106,9 +106,8 @@ public class LabDaoImpl implements LabDao {
                     break;
                 }
             }
-            
         }
-
+        
         if (flag) {
             return lab;
         }
@@ -118,8 +117,8 @@ public class LabDaoImpl implements LabDao {
     public static void main(String[] args) {
         LabDaoImpl daoImpl = new LabDaoImpl();
         Lab lab = daoImpl.getActiveLab("username");
-        
-        System.out.println("Name: "+lab.getName());
+
+        System.out.println("Name: " + lab.getName());
         System.out.println("Assesment " + lab.getAssesmentQueue().getAssesmentQueueId());
     }
 }

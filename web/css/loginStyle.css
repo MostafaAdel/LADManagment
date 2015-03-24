@@ -14,8 +14,29 @@ h1
 /*text box style*/
 
 
-.login {
-    
+.username {
+    position: absolute;
+    left: 55px;
+    top: 50px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #EAEAEA;
+    background: -moz-linear-gradient(top, #FFF, #EAEAEA);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #FFF), color-stop(1.0, #EAEAEA));
+    border: 1px solid #CACACA;
+    color: #444;
+    font-size: 1.4em;
+    margin: 0 0 0x;
+    padding: 5px 50px;
+    width: 200px;
+}
+
+
+
+.password {
+    position: absolute;
+    left: 55px;
+    top: 120px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     background-color: #EAEAEA;
@@ -43,6 +64,9 @@ h1
 
 /* Button Style */
 .button {
+    position: absolute;
+    left: 130px;
+    top: 200px;
     -moz-box-shadow:inset 0px 0px 0px -2px #97c4fe;
     -webkit-box-shadow:inset 0px 0px 0px -2px #97c4fe;
     box-shadow:inset 0px 0px 0px -2px #97c4fe;
@@ -78,20 +102,21 @@ h1
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6',GradientType=0);
     background-color:#1e62d0;
 }
-.button:active {
+/*.button:active {
     position:relative;
     top:1px;
-}
+}*/
 
 
 .login
 {
     position: absolute;
-    left: 40%;
+    top: 20%;
+    left: 35%;
     border: 5px solid #765942;
     border-radius: 50px;
     width: 400px;
-    height: 400px;
+    height: 300px;
     color: #1e62d0;
     font-family: fantasy;
     background-color:lemonchiffon;

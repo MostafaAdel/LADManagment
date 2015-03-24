@@ -62,7 +62,9 @@ public class SignIn extends HttpServlet {
         String password = request.getParameter("pass");
         if (namePrefix.equals("std_")) {
             System.out.println("Entered Student Sign in");
-            StudentDto studentDto = signInController.SigninStudent(namePostfix, password);
+            System.out.println("*******"+namePostfix);
+            System.out.println("*******"+password);
+            StudentDto studentDto = signInController.SigninStudent(namePostfix, "password");
             
             if (studentDto != null) {
                 System.out.println("User name exist");
