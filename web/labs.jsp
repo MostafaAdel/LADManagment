@@ -18,38 +18,12 @@
 		<input type="button" value="deactivate lab"/>
 		<h3>Students List</h3>
 		<ul>
-			<li>
-				Ahmed Medhat
-				<input type="button" value="View Uploaded Assignment" disabled/>
+                    <c:forEach var="student" items='${sessionScope.students}'>
+                        <li>
+                            ${student.userName}
+                                <input type="button" value="View Uploaded Assignment" <c:if test="${sessionScope.labStatus == 'true'}"> disabled </c:if>/>
 			</li>
-			<li>
-				Ahmed Mazen
-				<input type="button" value="View Uploaded Assignment" disabled/>
-			</li>
-			<li>
-				Ahmed Gabr
-				<input type="button" value="View Uploaded Assignment" disabled/>
-			</li>
-			<li>
-				Mohamed Sa3eed
-				<input type="button" value="View Uploaded Assignment" disabled/>
-			</li>
-			<li>
-				Mostafa Magdy
-				<input type="button" value="View Uploaded Assignment" disabled/>
-			</li>
-			<li>
-				Mohsen
-				<input type="button" value="View Uploaded Assignment" disabled/>
-			</li>
-			<li>
-				Asmaa
-				<input type="button" value="View Uploaded Assignment" disabled/>
-			</li>
-			<li>
-				Eman
-				<input type="button" value="View Uploaded Assignment" disabled/>
-			</li>
+                    </c:forEach>
 		</ul>
 		<h3>Assistance Queue</h3>
 		<ul>
@@ -90,35 +64,35 @@
 		<ul>
 			<li>
 				Ahmed Medhat
-				<a href="/LADManagment/LabsController?notifyDelivery=Ahmed Medhat"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Ahmed Medhat"><input type="button" value="notify"/></a>
 			</li>
 			<li>
 				Ahmed Mazen
-				<a href="/LADManagment/LabsController?notifyDelivery=Ahmed Mazen"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Ahmed Mazen"><input type="button" value="notify"/></a>
 			</li>
 			<li>
 				Ahmed Gabr
-				<a href="/LADManagment/LabsController?notifyDelivery=Ahmed Gabr"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Ahmed Gabr"><input type="button" value="notify"/></a>
 			</li>
 			<li>
 				Mohamed Sa3eed
-				<a href="/LADManagment/LabsController?notifyDelivery=Mohamed saeed"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Mohamed saeed"><input type="button" value="notify"/></a>
 			</li>
 			<li>
 				Mostafa Magdy
-				<a href="/LADManagment/LabsController?notifyDelivery=Mostafa Magdy"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Mostafa Magdy"><input type="button" value="notify"/></a>
 			</li>
 			<li>
 				Mohsen
-				<a href="/LADManagment/LabsController?notifyDelivery=Mohsen"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Mohsen"><input type="button" value="notify"/></a>
 			</li>
 			<li>
 				Asmaa
-				<a href="/LADManagment/LabsController?notifyDelivery=Asmaa"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Asmaa"><input type="button" value="notify"/></a>
 			</li>
 			<li>
 				Eman
-				<a href="/LADManagment/LabsController?notifyDelivery=Eman"><input type="button" valuwe="notify"/></a>
+				<a href="/LADManagment/LabsController?notifyDelivery=Eman"><input type="button" value="notify"/></a>
 			</li>
 		</ul>
 	</div>

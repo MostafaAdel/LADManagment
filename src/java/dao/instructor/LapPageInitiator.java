@@ -6,6 +6,7 @@
 package dao.instructor;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.Query;
@@ -13,7 +14,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import pojo.Course;
 import pojo.CourseHasGroups;
-import pojo.CourseHasGroupsId;
 import pojo.Groups;
 import pojo.Lab;
 import pojo.Student;
@@ -67,5 +67,22 @@ public class LapPageInitiator {
           
         closeSession(session);
         return labsList;
+    }
+
+    public ArrayList<Student> getStudentsOfGroup(int groupId) {
+        Session session = createSession();
+        Query hql =  session.createQuery("from Groups s where s.groupId = :groupid").setInteger("groupid", groupId);
+        List groupList = hql.list();
+        //id is unique only 1 element will get back
+        Groups group = (Groups) groupList.get(0);
+        
+        ArrayList<Student> studentsList = new ArrayList<>();
+        Set studentsSet = group.getStudents();
+        
+        for(Object studetObj : studentsSet){
+            studentsList.add((Student)studetObj);
+        }
+        closeSession(session);
+        return studentsList;
     }
 }

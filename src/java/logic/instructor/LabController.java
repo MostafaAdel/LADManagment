@@ -16,6 +16,7 @@ import dto.instructor.StudentDto;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
+import pojo.Lab;
 import utility.InstructorUtility;
 
 /**
@@ -86,6 +87,9 @@ public class LabController{
                             && currentTime.before(this.labViewdto.getEndDate());
         return result;
     }
+    
+    
+    
     /**
      * close an opened lab
      * 
@@ -207,7 +211,24 @@ public class LabController{
         return null;        
     }
     
-    
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////new methods////////////////////
+    //////////////////////////////////////////////////////////////////
+    /**
+     * check if the current time is between the start date and the end date
+     * 
+     * @return true if the lab is running or false otherwise
+     */
+    public static boolean isRunning(Lab lab){
+         System.out.println(lab.getStartDate());
+         System.out.println(lab.getEndDate());
+         System.out.println(new Date());
+        //get current time
+        Date currentTime = new Date();
+        boolean result = currentTime.after(lab.getStartDate()) 
+                            && currentTime.before(lab.getEndDate());
+        return result;
+    }
     
     
 }
