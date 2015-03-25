@@ -22,6 +22,8 @@
             var addAssesstmentRequest = null;
             var cancelDilveryRequest = null;
             var cancelAssessmentRequest = null;
+            var checkUpload = null;
+            var xmlHttp = null;
 //            function addDeliveryReuest() {
 //
 //
@@ -64,18 +66,82 @@
                 }
             }
 
+            function checkIfUploadEnabled() {
+
+                if (window.XMLHttpRequest) {
+                    checkUpload = new XMLHttpRequest();
+                }
+                checkUpload.onreadystatechange = handelReq3;
+                uname = document.getElementById("username").value;
+                checkUpload.open("GET", "CheckUploadEnabled", true);
+                checkUpload.send(null);
+
+            }
+
+            function handelReq3() {
+                if (checkUpload.readyState == 4) {
+                    var check = checkUpload.responseText;
+                    if (check == "enabled") {
+                        document.getElementById("choose").disabled = false;
+                        document.getElementById("uploadBtn").disabled = false;
+                    }
+                    else {
+                        document.getElementById("choose").disabled = true;
+                        document.getElementById("uploadBtn").disabled = true;
+                    }
+                }
+            }
+
+
+            function checkNotifications() {
+
+                if (window.XMLHttpRequest)
+                    xmlHttp = new XMLHttpRequest();
+
+                xmlHttp.onreadystatechange = popNotification;
+                xmlHttp.open("GET", "NotifyStudent", true);
+                xmlHttp.send(null);
+            }
+
+
+            function popNotification() {
+                if (xmlHttp.readyState === 4) {
+                    if (xmlHttp.responseText === "no" || xmlHttp.responseText === "nono") {
+
+                    }
+                    else {
+                        alert(xmlHttp.responseText);
+                    }
+
+
+                }
+            }
             function updateQueues() {
                 deliveryQueue();
                 AssessmentQueue();
+                checkIfUploadEnabled();
+                checkNotifications();
             }
+
+
 
         </script>
 
         <body onload="setInterval('updateQueues()', 10000)">
+
+
             <div class = "upload">
-                <input type="file" value="Update Assignments" class="button" disabled="true" />
-            </div>
-            <br><br>
+                <form action ="UploadServlet" method="POST" enctype="multipart/form-data" >
+                    <input type="hidden" name="studentID" value="${studentDto.studentId}">
+                <input type="file" value="Update Assignments" name="file" id="choose"  disabled="true" />
+                <input type="submit" value="upload"  id = "uploadBtn" disabled="true" />
+            </form>
+        </div>
+
+
+
+
+        <br><br>
         <h1><c:out value="${studentDto.fulName}" ></c:out></h1> 
         <input hidden="reuest" id="username" value="${studentDto.userName}">
         <div class="queues">

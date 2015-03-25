@@ -52,6 +52,22 @@
         <servlet-name>CancelDeliveryRequest</servlet-name>
         <servlet-class>boundary.CancelDeliveryRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckUploadEnabled</servlet-name>
+        <servlet-class>boundary.CheckUploadEnabled</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>boundary.UploadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NotifyStudent</servlet-name>
+        <servlet-class>logic.NotifyStudent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>InstructorMainPage</servlet-name>
         <url-pattern>/InstructorMainPage</url-pattern>
@@ -112,6 +128,14 @@
         <servlet-name>CancelDeliveryRequest</servlet-name>
         <url-pattern>/CancelDeliveryRequest</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckUploadEnabled</servlet-name>
+        <url-pattern>/CheckUploadEnabled</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotifyStudent</servlet-name>
+        <url-pattern>/NotifyStudent</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -120,4 +144,28 @@
     <welcome-file-list>
         <welcome-file>signin.html</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>Constraint1</display-name>
+        <web-resource-collection>
+            <web-resource-name>labs</web-resource-name>
+            <description/>
+            <url-pattern>/labs.jsp</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>welcomeIns</web-resource-name>
+            <description/>
+            <url-pattern>/welcomeIns.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>admin</role-name>
+    </security-role>
 </web-app>

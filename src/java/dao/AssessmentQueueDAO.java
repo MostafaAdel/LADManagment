@@ -96,8 +96,8 @@ public class AssessmentQueueDAO {
         ra.add(requestAssesment);
         student.setRequestAssesments(ra);
         if (found) {
-            //int number_of_request = exsitRquest.getNumberOfRequests();
-          //  exsitRquest.setNumberOfRequests(++number_of_request);
+            int number_of_request = exsitRquest.getNumberOfRequests();
+            exsitRquest.setNumberOfRequests(++number_of_request);
             exsitRquest.setExistInQueue(true);
             session.saveOrUpdate(exsitRquest);
         } else {
@@ -123,11 +123,11 @@ public class AssessmentQueueDAO {
         RequestAssesment ra = (RequestAssesment) hql2.uniqueResult();
         if (ra != null) {
             boolean existinQueue = ra.isExistInQueue();
-            //int number_of_request = ra.getNumberOfRequests();
-            //if (number_of_request > 0 && existinQueue) {
-              //  System.out.println("right case");
-              //  ra.setNumberOfRequests(--number_of_request);
-           // }
+            int number_of_request = ra.getNumberOfRequests();
+            if (number_of_request > 0 && existinQueue) {
+                System.out.println("right case");
+                ra.setNumberOfRequests(--number_of_request);
+            }
             ra.setExistInQueue(false);
             session.saveOrUpdate(ra);
             session.getTransaction().commit();
