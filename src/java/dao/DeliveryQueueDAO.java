@@ -62,26 +62,66 @@ public class DeliveryQueueDAO {
         session.beginTransaction();
         Query hql = session.createQuery("from Lab l where l.name=:name").setString("name", labName);
         Lab lab = (Lab) hql.uniqueResult();
-        DileveryQueue dileveryQueue= lab.getDileveryQueue();
+        DileveryQueue dileveryQueue = lab.getDileveryQueue();
         Set students = dileveryQueue.getStudents();
         Query hql2 = session.createQuery("from Student s where s.studentId=:studentID").setInteger("studentID", studentId);
         Student student = (Student) hql2.uniqueResult();
         students.add(student);
         dileveryQueue.setStudents(students);
-        
+
         Set dilevryQueues = student.getDileveryQueues();
         dilevryQueues.add(dileveryQueue);
         student.setDileveryQueues(dilevryQueues);
-        
+
         session.saveOrUpdate(dileveryQueue);
         session.saveOrUpdate(student);
         session.getTransaction().commit();
         session.close();
     }
 
+    public void cancelDeliveryRequest(String labName, int studentID) {
+        Session session = createSession();
+        session.beginTransaction();
+
+        //get student
+        Query hql2 = session.createQuery("from Student s where s.studentId=:studentID").setInteger("studentID", studentID);
+        Student student = (Student) hql2.uniqueResult();
+        //get lab
+        Query hql = session.createQuery("from Lab l where l.name=:name").setString("name", labName);
+        Lab lab = (Lab) hql.uniqueResult();
+
+        //get delivery queue of lab
+        DileveryQueue dileveryQueue = lab.getDileveryQueue();
+
+        //get stduent of the deilver queue
+        Set students = dileveryQueue.getStudents();
+        Student temp = null;
+        boolean found = false;
+        Iterator<Student> studentIterator = (Iterator<Student>) students.iterator();
+        while (studentIterator.hasNext() && !found) {
+            temp = studentIterator.next();
+            if (student.getStudentId() == temp.getStudentId()) {
+                found = true;
+
+            }
+        }
+        if (found) {
+            students.remove(student);
+            student.getDileveryQueues().remove(dileveryQueue);
+            session.saveOrUpdate(lab);
+            session.saveOrUpdate(dileveryQueue);
+            session.saveOrUpdate(student);
+        }
+
+        session.getTransaction().commit();
+        session.close();
+
+    }
+
     public static void main(String[] args) {
         DeliveryQueueDAO aqdao = new DeliveryQueueDAO();
-        aqdao.addRequestDelivery("lab1", 17);
+        //aqdao.addRequestDelivery("lab1", 17);
+        aqdao.cancelDeliveryRequest("lab1", 17);
 
     }
 }

@@ -19,10 +19,9 @@
             var assmentReuests = null;
             var deliveryReuests = null;
             var addDilveryRequest = null;
-
-            
-
-
+            var addAssesstmentRequest = null;
+            var cancelDilveryRequest = null;
+            var cancelAssessmentRequest = null;
 //            function addDeliveryReuest() {
 //
 //
@@ -70,10 +69,13 @@
                 AssessmentQueue();
             }
 
-    </script>
+        </script>
 
-    <body onload="setInterval('updateQueues()', 10000)">
-
+        <body onload="setInterval('updateQueues()', 10000)">
+            <div class = "upload">
+                <input type="file" value="Update Assignments" class="button" disabled="true" />
+            </div>
+            <br><br>
         <h1><c:out value="${studentDto.fulName}" ></c:out></h1> 
         <input hidden="reuest" id="username" value="${studentDto.userName}">
         <div class="queues">
@@ -86,18 +88,29 @@
                 <br>
                 <center>
                     <input type="button" value="Request" class="button" id="wael"/>
+
                     <script>
 //                         
-    document.getElementById("wael").addEventListener("click",function() {  
-                                            if (window.XMLHttpRequest) {
-                                                addDilveryRequest = new XMLHttpRequest();
-                                            }
-                                            addDilveryRequest.open("GET", "AddDeliveryRequest?studentID="+ ${studentDto.studentId}+ "&labName=${labDto.name}", true);
-                                            addDilveryRequest.send(null);
+                        document.getElementById("wael").addEventListener("click", function () {
+                            if (window.XMLHttpRequest) {
+                                addDilveryRequest = new XMLHttpRequest();
+                            }
+                            addDilveryRequest.open("GET", "AddDeliveryRequest?studentID=" + ${studentDto.studentId} + "&labName=${labDto.name}", true);
+                            addDilveryRequest.send(null);
                         });
                     </script>
-                    <input type="button" value="Cancel" class="button" onclick=""/>
+                    <input type="button" value="Cancel" id="btn_cancele_del_req" class="button" onclick=""/>
                 </center>
+                <script>
+//                         
+                    document.getElementById("btn_cancele_del_req").addEventListener("click", function () {
+                        if (window.XMLHttpRequest) {
+                            cancelDilveryRequest = new XMLHttpRequest();
+                        }
+                        cancelDilveryRequest.open("GET", "CancelDeliveryRequest?studentID=" + ${studentDto.studentId} + "&labName=${labDto.name}", true);
+                        cancelDilveryRequest.send(null);
+                    });
+                </script>
             </div>
 
             <div class="assesmentQueue">
@@ -108,8 +121,28 @@
                 <br>
                 <br>
                 <center>
-                    <input type="button" value="Request" class="button"/> 
-                    <input type="button" value="Cancel" class="button"/>
+                    <input type="button" value="Request" class="button" id="btn_ass_req"/> 
+                    <script>
+//                         
+                        document.getElementById("btn_ass_req").addEventListener("click", function () {
+                            if (window.XMLHttpRequest) {
+                                addAssesstmentRequest = new XMLHttpRequest();
+                            }
+                            addAssesstmentRequest.open("GET", "AddAssesmentRequest?studentID=" + ${studentDto.studentId} + "&labName=${labDto.name}", true);
+                            addAssesstmentRequest.send(null);
+                        });
+                    </script>
+                    <input type="button" value="Cancel" id="btn_cancele_ass_req" class="button"/>
+                    <script>
+//                         
+                        document.getElementById("btn_cancele_ass_req").addEventListener("click", function () {
+                            if (window.XMLHttpRequest) {
+                                cancelAssessmentRequest = new XMLHttpRequest();
+                            }
+                            cancelAssessmentRequest.open("GET", "CancelAssesmentRequst?studentID=" + ${studentDto.studentId} + "&labName=${labDto.name}", true);
+                            cancelAssessmentRequest.send(null);
+                        });
+                    </script>
                 </center>
             </div>
         </div>

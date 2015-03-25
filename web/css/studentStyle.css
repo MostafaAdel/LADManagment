@@ -121,3 +121,8 @@ h1
     font-size: 30px;
     width: 350px;
 }
+.upload
+{
+    float: left;
+    padding-left: 870px;
+}

@@ -40,6 +40,18 @@
         <servlet-name>AddDeliveryRequest</servlet-name>
         <servlet-class>boundary.AddDeliveryRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAssesmentRequest</servlet-name>
+        <servlet-class>boundary.AddAssesmentRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelAssesmentRequst</servlet-name>
+        <servlet-class>boundary.CancelAssesmentRequst</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelDeliveryRequest</servlet-name>
+        <servlet-class>boundary.CancelDeliveryRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstructorMainPage</servlet-name>
         <url-pattern>/InstructorMainPage</url-pattern>
@@ -87,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>AddDeliveryRequest</servlet-name>
         <url-pattern>/AddDeliveryRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAssesmentRequest</servlet-name>
+        <url-pattern>/AddAssesmentRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelAssesmentRequst</servlet-name>
+        <url-pattern>/CancelAssesmentRequst</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelDeliveryRequest</servlet-name>
+        <url-pattern>/CancelDeliveryRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
