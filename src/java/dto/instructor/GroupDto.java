@@ -5,6 +5,7 @@
  */
 package dto.instructor;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
  *
  * @author Hossam
  */
-public class GroupDto {
+public class GroupDto implements Serializable{
      private Integer groupId;
      private String name;
      private Set students = new HashSet(0);

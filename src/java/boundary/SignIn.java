@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.SignInController;
+import logic.instructor.LabController;
+import pojo.Lab;
 
 /**
  *
@@ -24,6 +26,7 @@ import logic.SignInController;
 public class SignIn extends HttpServlet {
 
     SignInController signInController = new SignInController();
+    LabController labController = new LabController();
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -52,17 +55,22 @@ public class SignIn extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         //get parameters
-
+        System.out.println("in servelt Signin");
         String name = request.getParameter("user");
         String namePrefix = name.substring(0, 4);
         String namePostfix = name.substring(4);
         String password = request.getParameter("pass");
         if (namePrefix.equals("std_")) {
+            System.out.println("Entered Student Sign in");
             StudentDto studentDto = signInController.SigninStudent(namePostfix, password);
+            
             if (studentDto != null) {
+                System.out.println("User name exist");
                 HttpSession session = request.getSession(true);
+                Lab lab = labController.getActiveLab(studentDto.getUserName());
                 session.setAttribute("studentDto", studentDto);
-                response.sendRedirect("/LADManagment/welcomeStudent.html");
+                session.setAttribute("labDto", lab);
+                response.sendRedirect("/LADManagment/welcomeStudent.jsp");
             }
         } else if (namePrefix.equals("ins_")) {
             InstructorDto instructorDto = signInController.SigninInstructor(namePostfix, password);

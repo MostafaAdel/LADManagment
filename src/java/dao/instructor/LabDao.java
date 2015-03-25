@@ -19,14 +19,14 @@ public interface LabDao {
      * 
      * @param lab lab to be closed
      */
-    public void closeLab(LabDto lab);
+    public void closeLab(int b);
     
     /**
      * use this method to enable upload of certain lab
      * 
      * @param lab lab to enable its update
      */
-    public void enableUpload(LabDto lab);
+    public void enableUpload(int labId);
     
     /**
      * shift queues from a lab to another
@@ -34,7 +34,7 @@ public interface LabDao {
      * @param shiftFromLab lab to shift queues from
      * @param shiftToLab   lab to shift queues to 
      */
-    public void shift(LabDto shiftFromLab , LabDto shiftToLab);
+    public void shift(int runnLabId,int shiftLabId);
     
     /**
      * return the next five labs in this group after the current one
@@ -51,7 +51,7 @@ public interface LabDao {
      * @param selectedStudent
      * @param instructorId 
      */
-    public void notifyDelivery(StudentDto selectedStudent,int instructorId);
+    public void notifyDelivery(int studentId,int instructorId,int labId);
     
     /**
      * update the selectedStudent record to add notification 
@@ -60,5 +60,5 @@ public interface LabDao {
      * @param selectedStudent
      * @param instructorId 
      */
-    public void notifyAssistance(StudentDto selectedStudent,int instructorId);
+    public void notifyAssistance(int studentId,int instructorId);
 }

@@ -16,6 +16,7 @@ import pojo.Student;
 import pojo.Groups;
 import pojo.Lab;
 import utility.HibernateUtil;
+import utility.InstructorUtility;
 
 public class TestInstructorDao {
     
@@ -90,14 +91,17 @@ public class TestInstructorDao {
      Iterator result=hql.list().iterator();
        
        ArrayList<Lab> labsOfInstructor=new ArrayList<>();
-       if(result.hasNext()){
+       while(result.hasNext()){
        labsOfInstructor.add((Lab)result.next());
+           System.out.println("iterate");
        }
+       System.out.println("TestInstructorDao --> numberOfLAbs = "+labsOfInstructor.size());
        System.out.println(labsOfInstructor.get(0).getName());
        for(Lab lab:labsOfInstructor){
         Groups group = lab.getCourseHasGroups().getGroups();
         GroupDto groupDto = new GroupDto(group.getGroupId(), group.getName());
-        InstructorGroups.add(groupDto);
+        if(!InstructorUtility.checkExistInGroup(InstructorGroups, groupDto))
+            InstructorGroups.add(groupDto);
        }
        System.out.println(InstructorGroups.get(0).getName());
        closeSession(session);

@@ -37,14 +37,14 @@ public class InstructorMainPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(true);
+                HttpSession session = request.getSession(false);
                 InstructorDto instructorDto= (InstructorDto)session.getAttribute("instructorDto");
                 System.out.println(instructorDto.getInstructorId());
                 ArrayList<GroupDto> insGroups= controller.getInstructorGroups( instructorDto.getInstructorId());
-                
                 System.out.println(insGroups.get(0).getName());
                 session.setAttribute("insGroups", insGroups);
-                session.setAttribute("x", new Integer(2));
+                session.setAttribute("x", insGroups.size());
+                session.setAttribute("insID", instructorDto.getInstructorId());
                 response.sendRedirect("/LADManagment/welcomeIns.jsp");
     }
 

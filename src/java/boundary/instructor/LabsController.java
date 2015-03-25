@@ -5,14 +5,17 @@
  */
 package boundary.instructor;
 
+import dao.instructor.LabDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.instructor.LabController;
-import logic.instructor.LabPageController;
+import pojo.Lab;
+import pojo.Student;
 
 /**
  *
@@ -47,30 +50,39 @@ public class LabsController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String labNumber="";
-        String NotifyAssistanceName="";
-        String NotifyDeliveryName="";
         try{
             labNumber = request.getParameter("lab");
-            NotifyAssistanceName = request.getParameter("notifyAssist");
-            NotifyDeliveryName = request.getParameter("notifyDelivery");
         }catch(Exception ex){}
         
-        PrintWriter out = response.getWriter();
-        out.println(labNumber);
-        out.println(NotifyAssistanceName);
-        out.println(NotifyDeliveryName);
+        LabDaoImpl ldi = new LabDaoImpl();
+        ArrayList<Student> students = ldi.getStudentsOfGroup(Integer.parseInt((String) request.getSession().getAttribute("groupId")));
+        request.getSession().setAttribute("students", students);
+        dao.instructor.LapPageInitiator  ins = new dao.instructor.LapPageInitiator();
+        ArrayList<Lab> labs = ins.getLabsOfCourseGroup(Integer.parseInt((String)request.getSession().getAttribute("groupId")), ((String)request.getSession().getAttribute("courseName")));
+        Lab selectedLab = null;
+        for(Lab labb : labs){
+            if(labb.getLabId() == Integer.parseInt(labNumber)){
+                selectedLab = labb;
+                break;
+            }
+        }
+        System.out.println(LabController.isRunning(selectedLab));
+        if(LabController.isRunning(selectedLab))
+            request.getSession().setAttribute("labStatus", true);
+        else
+            request.getSession().setAttribute("labStatus", false);
         
-        if(labNumber.equals("1")){
-            response.sendRedirect("/LADManagment/labs.jsp?lab=1");
-        }
-        else if(labNumber.equals("2")){
-            response.sendRedirect("/LADManagment/labs.jsp?lab=2");
-        }
-        else if(labNumber.equals("3")){
-            response.sendRedirect("/LADManagment/labs.jsp?lab=3");
-        }
+        
+        
+        dao.instructor.LapPageInitiator insa = new dao.instructor.LapPageInitiator();
+        ArrayList<Student> studentsInAssesment = insa.getStudentsInAssementQueue(Integer.parseInt(labNumber));
+        request.getSession().setAttribute("asStudents", studentsInAssesment);
+        
+         ArrayList<Student> studentsInDelivery = insa.getStudentsInDeliveryQueue(Integer.parseInt(labNumber));
+        request.getSession().setAttribute("deStudents", studentsInAssesment);
+        response.sendRedirect("/LADManagment/labs.jsp?lab="+labNumber);
     }
-
+  
     /**
      * Handles the HTTP <code>POST</code> method.
      *

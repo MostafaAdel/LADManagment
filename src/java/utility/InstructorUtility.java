@@ -5,8 +5,10 @@
  */
 package utility;
 
+import dto.instructor.GroupDto;
 import java.util.ArrayList;
 import java.util.Set;
+import pojo.Groups;
 
 /**
  *
@@ -20,5 +22,13 @@ public class InstructorUtility {
         }
         return MyList;
     }
+ 
     
+    public static boolean checkExistInGroup(ArrayList<GroupDto> list, GroupDto obj){
+        for(GroupDto object : list){
+            if(object.getName().equals(obj.getName()))
+                return true;
+        }
+        return false;
+    }
 }

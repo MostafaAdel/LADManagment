@@ -6,6 +6,7 @@
 package dao.instructor;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.Query;
@@ -13,12 +14,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import pojo.Course;
 import pojo.CourseHasGroups;
-import pojo.CourseHasGroupsId;
+import pojo.DileveryQueue;
 import pojo.Groups;
 import pojo.Lab;
 import pojo.Student;
 import utility.HibernateUtil;
-
+import pojo.RequestAssesment;
 /**
  *
  * @author Hossam
@@ -67,5 +68,49 @@ public class LapPageInitiator {
           
         closeSession(session);
         return labsList;
+    }
+
+    public ArrayList<Student> getStudentsOfGroup(int groupId) {
+        Session session = createSession();
+        Query hql =  session.createQuery("from Groups s where s.groupId = :groupid").setInteger("groupid", groupId);
+        List groupList = hql.list();
+        //id is unique only 1 element will get back
+        Groups group = (Groups) groupList.get(0);
+        
+        ArrayList<Student> studentsList = new ArrayList<>();
+        Set studentsSet = group.getStudents();
+        
+        for(Object studetObj : studentsSet){
+            studentsList.add((Student)studetObj);
+        }
+        closeSession(session);
+        return studentsList;
+    }
+    public ArrayList<Student> getStudentsInAssementQueue(int lapId){
+        ArrayList<Student> StudentsInqueue = new ArrayList<>();
+        Session session = createSession();
+        Query hql = session.createQuery("from Lab l where l.labId = :id").setInteger("id", lapId);
+        Lab lab = (Lab)hql.uniqueResult();
+        Set requestAssesments = lab.getAssesmentQueue().getRequestAssesments();
+        for(Object obj: requestAssesments){
+            if(((RequestAssesment)obj).isExistInQueue()){
+                StudentsInqueue.add(((RequestAssesment)obj).getStudent());
+            }
+        }
+        //closeSession(session);
+        return StudentsInqueue;
+    }
+
+    public ArrayList<Student> getStudentsInDeliveryQueue(int lapId) {
+        ArrayList<Student> StudentsInqueue = new ArrayList<>();
+        Session session = createSession();
+        Query hql = session.createQuery("from Lab l where l.labId = :id").setInteger("id", lapId);
+        Lab lab = (Lab)hql.uniqueResult();
+        Set deliveryQueueStudents = lab.getDileveryQueue().getStudents();
+        for(Object obj: deliveryQueueStudents){
+                StudentsInqueue.add((Student)obj);
+        }
+        //closeSession(session);
+        return StudentsInqueue;
     }
 }

@@ -11,7 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.instructor.LabController;
 import pojo.Lab;
+import pojo.Student;
 
 /**
  *
@@ -31,14 +33,33 @@ public class LapPageInitiator extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String groupIdString = request.getParameter("group");
+        request.getSession().setAttribute("groupId", groupIdString);
         int groupId = Integer.parseInt(groupIdString);
         String courseName = request.getParameter("course");
-        
+        request.getSession().setAttribute("courseName", courseName);
         
         dao.instructor.LapPageInitiator  ins = new dao.instructor.LapPageInitiator();
         ArrayList<Lab> labs = ins.getLabsOfCourseGroup(groupId, courseName);
+        ArrayList<Student> students = ins.getStudentsOfGroup(groupId);
         
+        boolean labStatus = LabController.isRunning(labs.get(0));
+//                System.out.println(LabController.isRunning(labs.get(3)));
+//                System.out.println(LabController.isRunning(labs.get(2)));
+//                System.out.println(LabController.isRunning(labs.get(1)));
+                for(Lab l:labs){
+                request.getSession().setAttribute("labID",l.getLabId());
+                }
+                
+        ArrayList<Student> studentsInAssesment = ins.getStudentsInAssementQueue(labs.get(0).getLabId());
+        ArrayList<Student> studentsInDelivery = ins.getStudentsInDeliveryQueue(labs.get(0).getLabId());
+        
+        request.getSession().setAttribute("deStudents", studentsInAssesment);        
+        request.getSession().setAttribute("asStudents", studentsInAssesment);
         request.getSession().setAttribute("labs", labs);
+        request.getSession().setAttribute("students", students);
+        request.getSession().setAttribute("labStatus", labStatus);
+        request.getSession().setAttribute("labsNumber", labs.size());
+                
         response.sendRedirect("/LADManagment/labs.jsp?lab="+labs.get(0).getLabId());
     }
 

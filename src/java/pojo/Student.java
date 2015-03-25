@@ -21,7 +21,9 @@ public class Student  implements java.io.Serializable {
      private Set dileveryQueues = new HashSet(0);
      private Set requestAssesments = new HashSet(0);
      private Set assignments = new HashSet(0);
-
+     private String notifyAssistant;
+     private String notifyDelivery;
+     
     public Student() {
     }
 
@@ -32,18 +34,35 @@ public class Student  implements java.io.Serializable {
         this.password = password;
         this.activated = activated;
     }
-    public Student(Department department, String fulName, String userName, String password, boolean activated, Set groupses, Set dileveryQueues, Set requestAssesments, Set assignments) {
-       this.department = department;
-       this.fulName = fulName;
-       this.userName = userName;
-       this.password = password;
-       this.activated = activated;
-       this.groupses = groupses;
-       this.dileveryQueues = dileveryQueues;
-       this.requestAssesments = requestAssesments;
-       this.assignments = assignments;
+    public Student(Department department, String fulName, String userName, String password, boolean activated, String notifyAssistant, String notifyDelivery) {
+        this.department = department;
+        this.fulName = fulName;
+        this.userName = userName;
+        this.password = password;
+        this.activated = activated;
+        this.notifyAssistant = notifyAssistant;
+        this.notifyDelivery = notifyDelivery;
     }
+
+    public String getNotifyAssistant() {
+        return notifyAssistant;
+    }
+
+    public String getNotifyDelivery() {
+        return notifyDelivery;
+    }
+
+    public void setNotifyAssistant(String notifyAssistant) {
+        this.notifyAssistant = notifyAssistant;
+    }
+
+    public void setNotifyDelivery(String notifyDelivery) {
+        this.notifyDelivery = notifyDelivery;
+    }
+    
    
+    
+    
     public Integer getStudentId() {
         return this.studentId;
     }
@@ -114,9 +133,10 @@ public class Student  implements java.io.Serializable {
     public void setAssignments(Set assignments) {
         this.assignments = assignments;
     }
+    
 
 
-
+    
 
 }
 

@@ -28,6 +28,38 @@
         <servlet-name>LapPageInitiator</servlet-name>
         <servlet-class>boundary.instructor.LapPageInitiator</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QueuesBoundary</servlet-name>
+        <servlet-class>boundary.instructor.QueuesBoundary</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StartUpload</servlet-name>
+        <servlet-class>boundary.instructor.StartUpload</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CloseLab</servlet-name>
+        <servlet-class>boundary.instructor.CloseLab</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NotificationBoundary</servlet-name>
+        <servlet-class>boundary.instructor.NotificationBoundary</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadAssignment</servlet-name>
+        <servlet-class>boundary.instructor.DownloadAssignment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NotifyDelivery</servlet-name>
+        <servlet-class>boundary.instructor.NotifyDelivery</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NotifyAssistance</servlet-name>
+        <servlet-class>boundary.instructor.NotifyAssistance</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShiftQueues</servlet-name>
+        <servlet-class>boundary.instructor.ShiftQueues</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstructorMainPage</servlet-name>
         <url-pattern>/InstructorMainPage</url-pattern>
@@ -64,6 +96,38 @@
         <servlet-name>LapPageInitiator</servlet-name>
         <url-pattern>/LapPageInitiator</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QueuesBoundary</servlet-name>
+        <url-pattern>/QueuesBoundary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StartUpload</servlet-name>
+        <url-pattern>/StartUpload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CloseLab</servlet-name>
+        <url-pattern>/CloseLab</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotificationBoundary</servlet-name>
+        <url-pattern>/NotificationBoundary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadAssignment</servlet-name>
+        <url-pattern>/DownloadAssignment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotifyDelivery</servlet-name>
+        <url-pattern>/NotifyDelivery</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotifyAssistance</servlet-name>
+        <url-pattern>/NotifyAssistance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShiftQueues</servlet-name>
+        <url-pattern>/ShiftQueues</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -72,4 +136,24 @@
     <welcome-file-list>
         <welcome-file>signin.html</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>Constraint1</display-name>
+        <web-resource-collection>
+            <web-resource-name>welcomeIns.jsp</web-resource-name>
+            <description/>
+            <url-pattern>/welcomeIns.jsp</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>labs.jsp</web-resource-name>
+            <description/>
+            <url-pattern>/labs.jsp</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>admin</role-name>
+    </security-role>
 </web-app>

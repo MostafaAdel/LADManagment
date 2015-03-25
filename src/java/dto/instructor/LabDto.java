@@ -24,6 +24,17 @@ public class LabDto {
     private Boolean uploadEnabled;
     private Set instructors = new HashSet(0);
 
+    public LabDto(Integer labId, AssesmentQueueDto assesmentQueue, DileveryQueueDto dileveryQueue, Date startDate, Date endDate, String name, Boolean uploadEnabled) {
+        this.labId = labId;
+        this.assesmentQueue = assesmentQueue;
+        this.dileveryQueue = dileveryQueue;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.name = name;
+        this.uploadEnabled = uploadEnabled;
+    }
+
+    
     public LabDto() {
     }
 
