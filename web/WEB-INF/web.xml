@@ -29,6 +29,45 @@
         <servlet-class>boundary.instructor.LapPageInitiator</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeliveryQueueServelt</servlet-name>
+        <servlet-class>boundary.DeliveryQueueServelt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AssessmentQueueServelt</servlet-name>
+        <servlet-class>boundary.AssessmentQueueServelt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDeliveryRequest</servlet-name>
+        <servlet-class>boundary.AddDeliveryRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddAssesmentRequest</servlet-name>
+        <servlet-class>boundary.AddAssesmentRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelAssesmentRequst</servlet-name>
+        <servlet-class>boundary.CancelAssesmentRequst</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelDeliveryRequest</servlet-name>
+        <servlet-class>boundary.CancelDeliveryRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckUploadEnabled</servlet-name>
+        <servlet-class>boundary.CheckUploadEnabled</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>boundary.UploadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NotifyStudent</servlet-name>
+        <servlet-class>logic.NotifyStudent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
         <servlet-name>QueuesBoundary</servlet-name>
         <servlet-class>boundary.instructor.QueuesBoundary</servlet-class>
     </servlet>
@@ -97,6 +136,36 @@
         <url-pattern>/LapPageInitiator</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AssessmentQueueServelt</servlet-name>
+        <url-pattern>/AssessmentQueueServelt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeliveryQueueServelt</servlet-name>
+        <url-pattern>/DeliveryQueueServelt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDeliveryRequest</servlet-name>
+        <url-pattern>/AddDeliveryRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAssesmentRequest</servlet-name>
+        <url-pattern>/AddAssesmentRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelAssesmentRequst</servlet-name>
+        <url-pattern>/CancelAssesmentRequst</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelDeliveryRequest</servlet-name>
+        <url-pattern>/CancelDeliveryRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckUploadEnabled</servlet-name>
+        <url-pattern>/CheckUploadEnabled</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotifyStudent</servlet-name>
+        <url-pattern>/NotifyStudent</url-pattern>
         <servlet-name>QueuesBoundary</servlet-name>
         <url-pattern>/QueuesBoundary</url-pattern>
     </servlet-mapping>
@@ -139,15 +208,6 @@
     <security-constraint>
         <display-name>Constraint1</display-name>
         <web-resource-collection>
-            <web-resource-name>welcomeIns.jsp</web-resource-name>
-            <description/>
-            <url-pattern>/welcomeIns.jsp</url-pattern>
-        </web-resource-collection>
-        <web-resource-collection>
-            <web-resource-name>labs.jsp</web-resource-name>
-            <description/>
-            <url-pattern>/labs.jsp</url-pattern>
-        </web-resource-collection>
     </security-constraint>
     <login-config>
         <auth-method>BASIC</auth-method>

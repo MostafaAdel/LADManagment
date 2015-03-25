@@ -18,10 +18,13 @@ import dto.StudentDto;
 public class SignInController {
 
     public StudentDto SigninStudent(String userName,String password){
-        StudentDto studentDto=new StudentDto(userName, password);
+        System.out.println("inside the controller");
+        StudentDto studentDto=new StudentDto( userName, password);
+        StudentDto studentDto1 ;
         StudentDaoImpl studentDaoImpl=new StudentDaoImpl();
-        studentDto=studentDaoImpl.signInStudent(studentDto);
-        return studentDto;
+        studentDto1=studentDaoImpl.signInStudent(studentDto);
+        System.out.println(studentDto1.getUserName());
+        return studentDto1;
     }
     public InstructorDto SigninInstructor(String userName,String password){
         InstructorDto instructorDto=new InstructorDto(userName, password);

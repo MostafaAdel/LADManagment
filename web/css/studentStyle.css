@@ -89,7 +89,7 @@ h1
 .deliveryQueue{
     
     float: left;
-    padding-left: 250px;
+    padding-left: 170px;
 }
 .delivery {
     border: 5px solid #765942;
@@ -99,8 +99,8 @@ h1
     font-family: fantasy;
     background-color:lemonchiffon;
     text-decoration-color: #1570cd;
-    font-size: 20px;
-    width: 250px;
+    font-size: 30px;
+    width: 350px;
 }
 
 .assesmentQueue{
@@ -118,6 +118,12 @@ h1
     font-family: fantasy;
     text-decoration-style: wavy;
     text-decoration-color: #1570cd;
-    font-size: 20px;
-    width: 250px;
+    font-size: 30px;
+    width: 350px;
+}
+.upload
+{
+    
+    float: left;
+    padding-left: 800px;
 }

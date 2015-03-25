@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -62,10 +63,13 @@ public class SignIn extends HttpServlet {
         String password = request.getParameter("pass");
         if (namePrefix.equals("std_")) {
             System.out.println("Entered Student Sign in");
-            StudentDto studentDto = signInController.SigninStudent(namePostfix, password);
+            System.out.println("*******" + namePostfix);
+            System.out.println("*******" + password);
+            StudentDto studentDto = signInController.SigninStudent(namePostfix,"password");
             
             if (studentDto != null) {
                 System.out.println("User name exist");
+                System.out.println(studentDto.getFulName());
                 HttpSession session = request.getSession(true);
                 Lab lab = labController.getActiveLab(studentDto.getUserName());
                 session.setAttribute("studentDto", studentDto);
@@ -80,7 +84,7 @@ public class SignIn extends HttpServlet {
                 session.setAttribute("instructorDto", instructorDto);
                 System.out.println(instructorDto.getInstructorId());
                 response.sendRedirect("/LADManagment/InstructorMainPage");
-            }else{
+            } else {
                 System.out.println("boundary.SignIn  --> no instructor with those username and password");
             }
         } else {

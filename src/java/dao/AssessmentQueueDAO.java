@@ -96,6 +96,46 @@ public class AssessmentQueueDAO {
         ra.add(requestAssesment);
         student.setRequestAssesments(ra);
         if (found) {
+            int number_of_request = exsitRquest.getNumberOfRequests();
+            exsitRquest.setNumberOfRequests(++number_of_request);
+            exsitRquest.setExistInQueue(true);
+            session.saveOrUpdate(exsitRquest);
+        } else {
+            session.persist(requestAssesment);
+        }
+        session.saveOrUpdate(assesmentQueue);
+        session.saveOrUpdate(student);
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void DeleteAssesmnetRequest(String labName, int studentId) {
+        Session session = createSession();
+        session.beginTransaction();
+
+        //get student 
+        Query hql = session.createQuery("from Student s where s.studentId=:studentID").setInteger("studentID", studentId);
+        Student student = (Student) hql.uniqueResult();
+
+        // get Assestment Requst
+        Query hql2 = session.createQuery("from  RequestAssesment RA where RA.student=:student").setEntity("student", student);
+        RequestAssesment ra = (RequestAssesment) hql2.uniqueResult();
+        if (ra != null) {
+            boolean existinQueue = ra.isExistInQueue();
+            int number_of_request = ra.getNumberOfRequests();
+            if (number_of_request > 0 && existinQueue) {
+                System.out.println("right case");
+                ra.setNumberOfRequests(--number_of_request);
+            }
+            ra.setExistInQueue(false);
+            session.saveOrUpdate(ra);
+            session.getTransaction().commit();
+        }
+        session.close();
+
+    }
+
             //int number_of_request = exsitRquest.getNumberOfRequests();
           //  exsitRquest.setNumberOfRequests(++number_of_request);
             exsitRquest.setExistInQueue(true);

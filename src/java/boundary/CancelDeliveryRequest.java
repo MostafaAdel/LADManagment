@@ -3,28 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package boundary;
 
-package boundary.instructor;
-
-import dto.InstructorDto;
-import dto.instructor.CourseDto;
-import dto.instructor.GroupDto;
+import dao.DeliveryQueueDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import logic.instructor.InstructorMianPageController;
 
 /**
  *
- * @author azza
+ * @author Mostafa_ITI
  */
-public class InstructorMainPage extends HttpServlet {
+public class CancelDeliveryRequest extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String labName = request.getParameter("labName");
+            int studentID = Integer.parseInt(request.getParameter("studentID"));
+            DeliveryQueueDAO deliveryQueueDAO = new DeliveryQueueDAO();
+            deliveryQueueDAO.cancelDeliveryRequest(labName, studentID);
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -33,19 +49,10 @@ public class InstructorMainPage extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    InstructorMianPageController controller=new InstructorMianPageController();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(false);
-                InstructorDto instructorDto= (InstructorDto)session.getAttribute("instructorDto");
-                System.out.println(instructorDto.getInstructorId());
-                ArrayList<GroupDto> insGroups= controller.getInstructorGroups( instructorDto.getInstructorId());
-                System.out.println(insGroups.get(0).getName());
-                session.setAttribute("insGroups", insGroups);
-                session.setAttribute("x", insGroups.size());
-                session.setAttribute("insID", instructorDto.getInstructorId());
-                response.sendRedirect("/LADManagment/welcomeIns.jsp");
+        processRequest(request, response);
     }
 
     /**
@@ -59,7 +66,7 @@ public class InstructorMainPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /**

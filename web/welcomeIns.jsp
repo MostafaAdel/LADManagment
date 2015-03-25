@@ -72,6 +72,7 @@ and open the template in the editor.
     <center>
         <div class="group-btn" style="margin-left: 250px;">
             <h1>Select Group </h1>
+            <!--<c:out value='${sessionScope.x}'/> -->
             <c:forEach var="group" items='${sessionScope.insGroups}'>
                 <input class="btn" value="${group.name}" type="button" onclick="getCourses(${group.groupId})"/>
             </c:forEach>
